@@ -38,7 +38,21 @@ namespace binaryTreeTest
 			Assert::AreEqual(1, left->getItem());
 		}
 
-		
+		/*
+			This test ensures a node is created on the right branch
+			when value is less than root.
+		*/
+		TEST_METHOD(TestAddToRootRight)
+		{
+			BinaryTree<int, int> tree;
+			tree.add(2, 2);
+			tree.add(3, 3);
+			Assert::IsNotNull(tree.root);
+			Assert::AreEqual(2, tree.root->getItem());
+			TNode<int, int>* right = tree.root->getRight();
+			Assert::IsNotNull(right);
+			Assert::AreEqual(3, right->getItem());
+		}
 
 	};
 }
