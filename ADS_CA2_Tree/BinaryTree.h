@@ -133,38 +133,18 @@ bool BinaryTree<K, E>::remove(K key)
 	{
 		smallestParent->setLeft(smallest->getRight());
 	}
-
 }
 
 template <typename K, typename E>
-void BinaryTree<K, E>::addItemToArray(TNode<K, E>* node, int& pos, int* arr)
+void BinaryTree<K, E>::addItemToArray(TNode<K, E>*node, int& pos, int* arr)
 {
 	if (node != nullptr)
 	{
 		addItemToArray(node->getLeft(), pos, arr);
-		arr[pos] = node->getItem();
+		arr[pos] = node->getKey();
 		pos++;
 		addItemToArray(node->getRight(), pos, arr);
 	}
-
-}
-
-template <typename K>
-K* BinaryTree<K>::toArray()
-{
-	K* arr = new K[root->count()];
-	int pos = 0;
-	addItemToArray(root, pos, arr);
-	return arr;
-}
-
-template <typename E>
-E* BinaryTree<E>::toArray()
-{
-	K* arr = new E[root->count()];
-	int pos = 0;
-	addItemToArray(root, pos, arr);
-	return arr;
 }
 
 template <typename K, typename E>
@@ -173,10 +153,11 @@ void BinaryTree<K, E>::clear()
 	delete root;
 	root = nullptr;
 }
+
 template <typename K, typename E>
 BinaryTree<K, E>::~BinaryTree()
 {
-	delete root;
+	root = nullptr;
 }
 
 template <typename K, typename E>
@@ -189,11 +170,10 @@ void BinaryTree<K, E>::printInOrder()
 template <typename K, typename E>
 void BinaryTree<K, E>::printInOrder(TNode<K, E>* node)
 {
-
 	if (node != nullptr)
 	{
 		printInOrder(node->getLeft());
-		cout << node->getItem() << " ";
+		cout << node->getKey() << " ";
 		printInOrder(node->getRight());
 	}
 }
@@ -208,10 +188,10 @@ void BinaryTree<K, E>::printPreOrder()
 template <typename K, typename E>
 void BinaryTree<K, E>::printPreOrder(TNode<K, E>* node)
 {
-
 	if (node != nullptr)
 	{
-		cout << node->getItem() << " ";
+		cout << node->getKey() << " ";
+		cout << node->getData() << " ";
 		printPreOrder(node->getLeft());
 		printPreOrder(node->getRight());
 	}
