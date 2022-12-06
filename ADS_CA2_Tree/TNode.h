@@ -19,9 +19,9 @@ public:
 	void add(K key, E item);
 	TNode<K, E>* getLeft();
 	TNode<K, E>* getRight();
+	TNode<K, E>* getParent();
 	void setLeft(TNode<K, E>* left);
 	void setRight(TNode<K, E>* right);
-	TNode<K, E>* getParent();
 	K getKey();
 	E getItem();
 	~TNode();
