@@ -86,15 +86,14 @@ bool BinaryTree<K, E>::remove(K key)
 	while (!found && toBeRemoved != nullptr)
 	{
 
-		if (toBeRemoved->getItem() == item)
+		if (toBeRemoved->getKey() == key)
 		{
-
 			found = true;
 		}
 		else
 		{
 			parent = toBeRemoved;
-			if (toBeRemoved->getItem() > item)
+			if (toBeRemoved->getKey() > key)
 			{
 				toBeRemoved = toBeRemoved->getLeft();
 			}

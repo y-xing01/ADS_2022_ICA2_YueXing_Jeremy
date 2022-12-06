@@ -15,13 +15,13 @@ private:
 public:
 	TNode();
 	TNode(K key, E item);
-	void setItem(K key, E item);
+	void setData(K key, E item);
 	int count();
 	void add(K key, E item);
 	TNode<K, E>* getLeft();
 	TNode<K, E>* getRight();
-	void setLeft(TNode<K, E>* l);
-	void setRight(TNode<K, E>* l);
+	void setLeft(TNode<K, E>* left);
+	void setRight(TNode<K, E>* right);
 	TNode<K, E>* getParent();
 	K getKey();
 	E getItem();
@@ -33,8 +33,8 @@ public:
 	void setKey(K key) { this->key = key; }
 	K getKey() const { return this->key; }
 
-	void setData(E item) { this->data = item; }
-	E getData() const { return this->data; }
+	void setItem(E item) { this->item = item; }
+	E getItem() const { return this->item; }
 };
 
 template <typename K, typename E>
@@ -53,6 +53,16 @@ TNode<K, E>::TNode()
 }
 
 template <typename K, typename E>
+TNode<K, E>::TNode(K key, E item)
+{
+	parent = nullptr;
+	left = nullptr;
+	right = nullptr;
+	this->key = key;
+	this->item = item;
+}
+
+template <typename K, typename E>
 K TNode<K, E>::getKey()
 {
 	return this->key;
@@ -65,54 +75,47 @@ E TNode<K, E>::getItem()
 }
 
 template <typename K, typename E>
-void TNode<K, E>::setItem(K key, E item)
+void TNode<K, E>::setData(K key, E item)
 {
 	this->key = key;
 	this->item = item;
 }
 
+
 template <typename K, typename E>
-void TNode<K, E>::add(K keyItem, E item)
+void TNode<K, E>::add(K key, E item)
 {
-	if (keyItem == this->key)
+	if (key == this->key)
 	{
 		return;
 	}
-	else if (keyItem < this->key)
+	else if (key < this->key)
 	{
 		if (left == nullptr)
 		{
-			left = new TNode<K, E>(keyItem, item);
+			left = new TNode<K, E>(key, item);
 		}
 		else
 		{
-			left->add(keyItem, item);
+			left->add(key, item);
 		}
 	}
 	else
 	{
 		if (right == nullptr)
 		{
-			right = new TNode<K, E>(keyItem, item);
-			right->item = keyItem;
+			right = new TNode<K, E>(key, item);
+			right->item = key;
 			right->parent = this;
 		}
 		else
 		{
-			right->add(keyItem, item);
+			right->add(key, item);
 		}
 	}
 }
 
-template <typename K, typename E>
-TNode<K, E>::TNode(K key, E item)
-{
-	parent = nullptr;
-	left = nullptr;
-	right = nullptr;
-	this->key = key;
-	this->item = item;
-}
+
 
 template <typename K, typename E>
 int TNode<K, E>::count()

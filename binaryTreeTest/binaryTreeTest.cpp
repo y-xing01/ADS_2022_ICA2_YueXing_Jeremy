@@ -87,37 +87,5 @@ namespace binaryTreeTest
 			Assert::AreEqual(7, tree.count());
 		}
 
-		/*
-		Test the remove function to try and remove an item not found
-		to test this we will use the following tree
-			  4
-			 / \
-			2   6
-		   / \ / \
-		  1  3 5  7
-		*/
-		TEST_METHOD(TestRemoveItemNotPresent)
-		{
-			BinaryTree<int, int> tree;
-			tree.add(4, 4);
-			tree.add(2, 2);
-			tree.add(6, 6);
-			tree.add(1, 1);
-			tree.add(3, 3);
-			tree.add(5, 5);
-			tree.add(7, 7);
-			Assert::AreEqual(7, tree.count());
-			tree.remove(8);
-			Assert::AreEqual(7, tree.count());
-			Assert::AreEqual(4, tree.root->getKey());
-			Assert::AreEqual(2, tree.root->getLeft()->getKey());
-			Assert::AreEqual(6, tree.root->getRight()->getKey());
-			TNode<int, int>* left = tree.root->getLeft();
-			TNode<int, int>* right = tree.root->getRight();
-			Assert::AreEqual(1, left->getLeft()->getKey());
-			Assert::AreEqual(3, left->getRight()->getKey());
-			Assert::AreEqual(5, right->getLeft()->getKey());
-			Assert::AreEqual(7, right->getRight()->getKey());
-		}
 	};
 }

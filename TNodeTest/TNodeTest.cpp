@@ -20,7 +20,7 @@ namespace TNodeTest
 			Assert::AreEqual(1, node.getItem());
 			Assert::IsNull(node.getLeft());
 			Assert::IsNull(node.getRight());
-			Assert::IsNull(node.getParentItem());
+			Assert::IsNull(node.getParent());
 		}
 
 		/*
