@@ -24,10 +24,10 @@ public:
 	void setItem(K key, E item);
 	int countItem();
 	void add(K key, E item);
-	TNode<K, E>* getLeftSide();
-	TNode<K, E>* getRightSide();
-	void setLeftSide(TNode<K, E>* l);
-	void setRightSide(TNode<K, E>* l);
+	TNode<K, E>* getLeft();
+	TNode<K, E>* getRight();
+	void setLeft(TNode<K, E>* l);
+	void setRight(TNode<K, E>* l);
 	TNode<K, E>* getParentItem();
 	K getKey();
 	E getItem();
@@ -136,13 +136,13 @@ int TNode<K, E>::countItem()
 }
 
 template <typename K, typename E>
-TNode<K, E>* TNode<K, E>::getLeftSide()
+TNode<K, E>* TNode<K, E>::getLeft()
 {
 	return this->left;
 }
 
 template <typename K, typename E>
-TNode<K, E>* TNode<K, E>::getRightSide()
+TNode<K, E>* TNode<K, E>::getRight()
 {
 	return this->right;
 }
@@ -154,13 +154,13 @@ TNode<K, E>* TNode<K, E>::getParentItem()
 }
 
 template <typename K, typename E>
-void TNode<K, E>::setLeftSide(TNode<K, E>* left)
+void TNode<K, E>::setLeft(TNode<K, E>* left)
 {
 	this->left = left;
 }
 
 template <typename K, typename E>
-void TNode<K, E>::setRightSide(TNode<K, E>* right)
+void TNode<K, E>::setRight(TNode<K, E>* right)
 {
 	this->right = right;
 }
