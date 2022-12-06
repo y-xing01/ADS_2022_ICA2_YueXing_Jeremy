@@ -220,5 +220,52 @@ namespace binaryTreeTest
 			Assert::AreEqual(5, right->getLeft()->getItem());
 			Assert::AreEqual(7, right->getRight()->getItem());
 		}
+
+		/*
+			Test the remove function to try and a node with multiple children
+			to test this we will use the following tree:
+					  8
+                    /   \
+                   /     \
+                  /       \
+                 /         \
+                4          12
+               / \        /   \
+              2   6      10   14
+             / \ / \    / \   / \
+			1  3 5  7  9  11 13 15
+
+			When we remove a node in the middle of the tree, the algorithm
+			should move the next lowest item up to the place of the removed node.
+			In this case 13 will be moved up to the place of 12
+		*/
+
+		TEST_METHOD(TestRemoveNodeWithMultipleChildren)
+		{
+			BinaryTree<int, int> tree;
+			tree.add(8, 8);
+			tree.add(4, 4);
+			tree.add(12, 12);
+			tree.add(2, 2);
+			tree.add(6, 6);
+			tree.add(1, 1);
+			tree.add(3, 3);
+			tree.add(5, 5);
+			tree.add(7, 7);
+			tree.add(10, 10);
+			tree.add(14, 14);
+			tree.add(9, 9);
+			tree.add(11, 11);
+			tree.add(13, 13);
+			tree.add(15, 15);
+			Assert::AreEqual(15, tree.count());
+
+			Assert::IsNotNull(tree.root->getRight()->getRight()->getLeft());
+			Assert::AreEqual(13, tree.root->getRight()->getRight()->getLeft()->getItem());
+			tree.remove(12);
+			Assert::AreEqual(14, tree.count());
+			Assert::AreEqual(13, tree.root->getRight()->getItem());
+			Assert::IsNull(tree.root->getRight()->getRight()->getLeft());
+		}
 	};
 }
