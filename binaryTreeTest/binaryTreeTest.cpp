@@ -13,10 +13,10 @@ namespace binaryTreeTest
 		
 		TEST_METHOD(TestAddToEmptyTree)
 		{
-			//BinaryTree<int, int> tree;
-			//tree.add(1, 1);
-			//Assert::IsNotNull(tree.root);
-			//Assert::AreEqual(1, tree.root->getKey());
+			BinaryTree<int, int> tree;
+			tree.add(1, 1);
+			Assert::IsNotNull(tree.root);
+			Assert::AreEqual(1, tree.root->getKey());
 		}
 	};
 }

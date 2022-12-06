@@ -31,6 +31,14 @@ public:
 	}
 };
 
+template <typename K, typename E>
+K* BinaryTree<K, E>::toArray()
+{
+	K* arr = new K[root->count()];
+	int pos = 0;
+	addItemToArray(root, pos, arr);
+	return arr;
+}
 
 template <typename K, typename E>
 BinaryTree<K, E>::BinaryTree()
@@ -52,7 +60,7 @@ void BinaryTree<K, E>::add(K key, E item)
 	{
 		root = new TNode<K, E>();		
 		root->setKey(key);
-		root->setItem(item);
+		root->setItem(key, item);
 	}
 	else
 	{
