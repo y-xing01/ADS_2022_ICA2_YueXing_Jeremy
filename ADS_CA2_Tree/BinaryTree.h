@@ -191,7 +191,7 @@ void BinaryTree<K, E>::printPreOrder(TNode<K, E>* node)
 	if (node != nullptr)
 	{
 		cout << node->getKey() << " ";
-		cout << node->getData() << " ";
+		cout << node->getItem() << " ";
 		printPreOrder(node->getLeft());
 		printPreOrder(node->getRight());
 	}
@@ -209,9 +209,9 @@ void BinaryTree<K, E>::printPostOrder(TNode<K, E>* node)
 
 	if (node != nullptr)
 	{
-
 		printPostOrder(node->getLeft());
 		printPostOrder(node->getRight());
+		cout << node->getKey() << " ";
 		cout << node->getItem() << " ";
 	}
 }
