@@ -1,17 +1,30 @@
 #pragma once
 //if E == Student (email, dob, address, id,...)
 //then K = Key(email, dob, address)
+#include "TNode.h"
+#include <vector>
 
 template <typename K, typename E>
 class BinaryTree
 {
+	void addItemToArray(TNode<K, E>* node, int& pos, int* arr);
 public:
 	TNode<K, E>* root;
 	BinaryTree();
-	void add(K item, E item);
-	bool remove(K item, E item);
+	void add(K key, E item);
+	bool remove(K key);
 	void clear();
 	int count();
+
+	void printInOrder();
+	void printInOrder(TNode<K, E>* node);
+	void printPreOrder();
+	void printPreOrder(TNode<K, E>* node);
+	void printPostOrder();
+	void printPostOrder(TNode<K, E>* node);
+
+	K* toArray();
+	~BinaryTree();
 
 	E* search(K key) {
 		return nullptr;
@@ -19,22 +32,23 @@ public:
 };
 
 template <typename K, typename E>
-BinaryTree<K, E>::BinaryTree()
+BinaryTree<K, E>::~BinaryTree()
 {
-	root = nullptr;
+	delete root;
 }
 
 template <typename K, typename E>
-void BinaryTree<K, E>::add(K item, E item)
+void BinaryTree<K, E>::add(K key, E item)
 {
 	if (root == nullptr)
 	{
-		root = new TNode<K, E>();
+		root = new TNode<K, E>();		
+		root->setKey(key);
 		root->setItem(item);
 	}
 	else
 	{
-		root->add(item);
+		root->add(key, item);
 	}
 }
 
@@ -47,7 +61,7 @@ int BinaryTree<K, E>::count()
 }
 
 template <typename K, typename E>
-bool BinaryTree<K, E>::remove(K item, E item)
+bool BinaryTree<K, E>::remove(K key)
 {
 	TNode<K, E>* toBeRemoved = root;
 	TNode<K, E>* parent = nullptr;
@@ -79,7 +93,7 @@ bool BinaryTree<K, E>::remove(K item, E item)
 
 	if (toBeRemoved->getLeft() == nullptr || toBeRemoved->getRight() == nullptr)
 	{
-		BSTNode<T>* newChild;
+		TNode<K, E>* newChild;
 		if (toBeRemoved->getLeft() == nullptr)
 		{
 			newChild = toBeRemoved->getRight();
