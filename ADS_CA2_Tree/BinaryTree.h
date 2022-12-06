@@ -267,3 +267,27 @@ void BinaryTree<K, E>::printPostOrder(TNode<K, E>* node)
 	}
 }
 
+template <typename K, typename E>
+int BinaryTree<K, E>::findDepth(TNode<K, E>* root, K x)
+{
+	if (root == NULL)
+		return -1;
+
+
+	int dist = -1;
+	// Check if x is current node=
+	if ((root->getKey() == x)
+
+		// Otherwise, check if x is
+		// present in the left subtree
+		|| (dist = findDepth(root->getLeft(), x)) >= 0
+
+		// Otherwise, check if x is
+		// present in the right subtree
+		|| (dist = findDepth(root->getRight(), x)) >= 0)
+
+		// Return depth of the node
+		return dist + 1;
+
+	return dist;
+}
