@@ -60,7 +60,7 @@ void BinaryTree<K, E>::add(K key, E item)
 	{
 		root = new TNode<K, E>();		
 		root->setKey(key);
-		root->setItem(key, item);
+		root->setItem(item);
 	}
 	else
 	{

@@ -3,20 +3,14 @@
 template <typename K, typename E>
 class TNode {
 private:
-	/// <summary>
-	/// A subset of the main data used to generate a unique number for the node
-	/// </summary>
+	/// Main data used to generate a unique number for the node
 	K key;
-	/// <summary>
-	/// The actual data that the node stores e.g. Person, Record, Student
-	/// </summary>
+	/// Data that the node stores e.g. Person, Record, Student
 	E item;
 
-	/// <summary>
 	/// Pointers to the two kids. Go left if new data key < key for this node, else go right
-	/// </summary>
 	TNode* left, * right;
-	TNode* parentItem;
+	TNode* parent;
 
 public:
 	TNode();
@@ -28,7 +22,7 @@ public:
 	TNode<K, E>* getRight();
 	void setLeft(TNode<K, E>* l);
 	void setRight(TNode<K, E>* l);
-	TNode<K, E>* getParentItem();
+	TNode<K, E>* getParent();
 	K getKey();
 	E getItem();
 	~TNode();
@@ -48,6 +42,14 @@ TNode<K, E>::~TNode()
 {
 	delete left;
 	delete right;
+}
+
+template <typename K, typename E>
+TNode<K, E>::TNode()
+{
+	parent = nullptr;
+	left = nullptr;
+	right = nullptr;
 }
 
 template <typename K, typename E>
@@ -93,7 +95,7 @@ void TNode<K, E>::add(K keyItem, E item)
 		{
 			right = new TNode<K, E>(keyItem, item);
 			right->item = keyItem;
-			right->parentItem = this;
+			right->parent = this;
 		}
 		else
 		{
@@ -103,17 +105,9 @@ void TNode<K, E>::add(K keyItem, E item)
 }
 
 template <typename K, typename E>
-TNode<K, E>::TNode()
-{
-	parentItem = nullptr;
-	left = nullptr;
-	right = nullptr;
-}
-
-template <typename K, typename E>
 TNode<K, E>::TNode(K key, E item)
 {
-	parentItem = nullptr;
+	parent = nullptr;
 	left = nullptr;
 	right = nullptr;
 	this->key = key;
@@ -148,9 +142,9 @@ TNode<K, E>* TNode<K, E>::getRight()
 }
 
 template <typename K, typename E>
-TNode<K, E>* TNode<K, E>::getParentItem()
+TNode<K, E>* TNode<K, E>::getParent()
 {
-	return this->parentItem;
+	return this->parent;
 }
 
 template <typename K, typename E>
