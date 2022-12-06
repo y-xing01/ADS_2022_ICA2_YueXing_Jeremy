@@ -22,6 +22,7 @@ namespace TNodeTest
 			Assert::IsNull(node.getRight());
 			Assert::IsNull(node.getParentItem());
 		}
+
 		/*
 			Testing getting left side item. Add a node as a child. All items should not be moved.
 			By Adding 2 the new node should be on the left side.
@@ -34,6 +35,20 @@ namespace TNodeTest
 			node.add(2, 2);
 			Assert::IsNotNull(node.getLeft());
 			Assert::AreEqual(2, node.getLeft()->getItem());
+		}
+
+		/*
+			Testing getting right side item. Add a node as a child. All items should not be moved.
+			By Adding 2 the new node should be on the left side.
+		*/
+		TEST_METHOD(getRightTest)
+		{
+			TNode<int, int> node(4, 4);
+			Assert::AreEqual(4, node.getItem());
+			Assert::IsNull(node.getRight());
+			node.add(6, 6);
+			Assert::IsNotNull(node.getRight());
+			Assert::AreEqual(6, node.getRight()->getItem());
 		}
 	};
 }
