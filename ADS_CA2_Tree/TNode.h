@@ -3,12 +3,11 @@
 template <typename K, typename E>
 class TNode {
 private:
-	/// Main data used to generate a unique number for the node
+	// Main data used to generate a unique number for the node
 	K key;
-	/// Data that the node stores e.g. Person, Record, Student
+	// Data that the node stores e.g. Person, Record, Student
 	E item;
-
-	/// Pointers to the two kids. Go left if new data key < key for this node, else go right
+	// Pointers to the two kids. Go left if new data key < key for this node, else go right
 	TNode* left, * right;
 	TNode* parent;
 
