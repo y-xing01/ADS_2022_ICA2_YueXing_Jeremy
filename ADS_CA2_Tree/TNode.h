@@ -94,3 +94,28 @@ E TNode<K, E>::getItem()
 {
 	return this->item;
 }
+
+template <typename K, typename E>
+TNode<K, E>::TNode()
+{
+	parentItem = nullptr;
+	left = nullptr;
+	right = nullptr;
+}
+
+template <typename K, typename E>
+TNode<K, E>::TNode(K key, E item)
+{
+	parentItem = nullptr;
+	left = nullptr;
+	right = nullptr;
+	this->key = key;
+	this->item = item;
+}
+
+template <typename K, typename E>
+void TNode<K, E>::setItem(K key, E item)
+{
+	this->key = key;
+	this->item = item;
+}
