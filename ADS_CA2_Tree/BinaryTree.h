@@ -31,6 +31,14 @@ public:
 	}
 };
 
+
+template <typename K, typename E>
+BinaryTree<K, E>::BinaryTree()
+{
+	root = nullptr;
+}
+
+
 template <typename K, typename E>
 BinaryTree<K, E>::~BinaryTree()
 {
@@ -151,12 +159,6 @@ template <typename K, typename E>
 void BinaryTree<K, E>::clear()
 {
 	delete root;
-	root = nullptr;
-}
-
-template <typename K, typename E>
-BinaryTree<K, E>::~BinaryTree()
-{
 	root = nullptr;
 }
 
