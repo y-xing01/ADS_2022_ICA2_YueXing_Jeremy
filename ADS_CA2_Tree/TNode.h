@@ -126,11 +126,11 @@ int TNode<K, E>::countItem()
 	int amount = 1;
 	if (left != nullptr)
 	{
-		amount += left->count();
+		amount += left->countItem();
 	}
 	if (right != nullptr)
 	{
-		amount += right->count();
+		amount += right->countItem();
 	}
 	return amount;
 }
