@@ -26,9 +26,9 @@ public:
 	void add(K key, E item);
 	TNode<K, E>* getLeftSide();
 	TNode<K, E>* getRightSide();
-	TNode<K, E>* getParentItem();
 	void setLeftSide(TNode<K, E>* l);
 	void setRightSide(TNode<K, E>* l);
+	TNode<K, E>* getParentItem();
 	K getKey();
 	E getItem();
 	~TNode();
@@ -48,6 +48,25 @@ TNode<K, E>::~TNode()
 {
 	delete left;
 	delete right;
+}
+
+template <typename K, typename E>
+K TNode<K, E>::getKey()
+{
+	return this->key;
+}
+
+template <typename K, typename E>
+E TNode<K, E>::getItem()
+{
+	return this->item;
+}
+
+template <typename K, typename E>
+void TNode<K, E>::setItem(K key, E item)
+{
+	this->key = key;
+	this->item = item;
 }
 
 template <typename K, typename E>
@@ -84,18 +103,6 @@ void TNode<K, E>::add(K keyItem, E item)
 }
 
 template <typename K, typename E>
-K TNode<K, E>::getKey()
-{
-	return this->key;
-}
-
-template <typename K, typename E>
-E TNode<K, E>::getItem()
-{
-	return this->item;
-}
-
-template <typename K, typename E>
 TNode<K, E>::TNode()
 {
 	parentItem = nullptr;
@@ -114,8 +121,46 @@ TNode<K, E>::TNode(K key, E item)
 }
 
 template <typename K, typename E>
-void TNode<K, E>::setItem(K key, E item)
+int TNode<K, E>::countItem()
 {
-	this->key = key;
-	this->item = item;
+	int amount = 1;
+	if (left != nullptr)
+	{
+		amount += left->count();
+	}
+	if (right != nullptr)
+	{
+		amount += right->count();
+	}
+	return amount;
+}
+
+template <typename K, typename E>
+TNode<K, E>* TNode<K, E>::getLeftSide()
+{
+	return this->left;
+}
+
+template <typename K, typename E>
+TNode<K, E>* TNode<K, E>::getRightSide()
+{
+	return this->right;
+}
+
+template <typename K, typename E>
+TNode<K, E>* TNode<K, E>::getParentItem()
+{
+	return this->parentItem;
+}
+
+template <typename K, typename E>
+void TNode<K, E>::setLeftSide(TNode<K, E>* left)
+{
+	this->left = left;
+}
+
+template <typename K, typename E>
+void TNode<K, E>::setRightSide(TNode<K, E>* right)
+{
+	this->right = right;
 }
