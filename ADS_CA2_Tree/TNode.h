@@ -36,6 +36,7 @@ public:
 	E getItem() const { return this->item; }
 };
 
+//Constructor
 template <typename K, typename E>
 TNode<K, E>::~TNode()
 {
@@ -61,6 +62,7 @@ TNode<K, E>::TNode(K key, E item)
 	this->item = item;
 }
 
+//Getter
 template <typename K, typename E>
 K TNode<K, E>::getKey()
 {
@@ -74,13 +76,44 @@ E TNode<K, E>::getItem()
 }
 
 template <typename K, typename E>
+TNode<K, E>* TNode<K, E>::getLeft()
+{
+	return this->left;
+}
+
+template <typename K, typename E>
+TNode<K, E>* TNode<K, E>::getRight()
+{
+	return this->right;
+}
+
+template <typename K, typename E>
+TNode<K, E>* TNode<K, E>::getParent()
+{
+	return this->parent;
+}
+
+//Setter
+template <typename K, typename E>
 void TNode<K, E>::setData(K key, E item)
 {
 	this->key = key;
 	this->item = item;
 }
 
+template <typename K, typename E>
+void TNode<K, E>::setLeft(TNode<K, E>* left)
+{
+	this->left = left;
+}
 
+template <typename K, typename E>
+void TNode<K, E>::setRight(TNode<K, E>* right)
+{
+	this->right = right;
+}
+
+//Adding Node
 template <typename K, typename E>
 void TNode<K, E>::add(K key, E item)
 {
@@ -115,7 +148,7 @@ void TNode<K, E>::add(K key, E item)
 }
 
 
-
+//Counting Node
 template <typename K, typename E>
 int TNode<K, E>::count()
 {
@@ -129,34 +162,4 @@ int TNode<K, E>::count()
 		amount += right->count();
 	}
 	return amount;
-}
-
-template <typename K, typename E>
-TNode<K, E>* TNode<K, E>::getLeft()
-{
-	return this->left;
-}
-
-template <typename K, typename E>
-TNode<K, E>* TNode<K, E>::getRight()
-{
-	return this->right;
-}
-
-template <typename K, typename E>
-TNode<K, E>* TNode<K, E>::getParent()
-{
-	return this->parent;
-}
-
-template <typename K, typename E>
-void TNode<K, E>::setLeft(TNode<K, E>* left)
-{
-	this->left = left;
-}
-
-template <typename K, typename E>
-void TNode<K, E>::setRight(TNode<K, E>* right)
-{
-	this->right = right;
 }

@@ -31,28 +31,21 @@ public:
 	}
 };
 
-template <typename K, typename E>
-K* BinaryTree<K, E>::toArray()
-{
-	K* arr = new K[root->count()];
-	int pos = 0;
-	addItemToArray(root, pos, arr);
-	return arr;
-}
-
+//Constructor
 template <typename K, typename E>
 BinaryTree<K, E>::BinaryTree()
 {
 	root = nullptr;
 }
 
-
+//Destructor
 template <typename K, typename E>
 BinaryTree<K, E>::~BinaryTree()
 {
 	delete root;
 }
 
+//Adding Binary Tree
 template <typename K, typename E>
 void BinaryTree<K, E>::add(K key, E item)
 {
@@ -68,6 +61,7 @@ void BinaryTree<K, E>::add(K key, E item)
 	}
 }
 
+//Counting root
 template <typename K, typename E>
 int BinaryTree<K, E>::count()
 {
@@ -76,6 +70,7 @@ int BinaryTree<K, E>::count()
 	return root->count();
 }
 
+//Removing node
 template <typename K, typename E>
 bool BinaryTree<K, E>::remove(K key)
 {
@@ -150,6 +145,17 @@ bool BinaryTree<K, E>::remove(K key)
 	}
 }
 
+//Adding item to Array
+template <typename K, typename E>
+K* BinaryTree<K, E>::toArray()
+{
+	K* arr = new K[root->count()];
+	int pos = 0;
+	addItemToArray(root, pos, arr);
+	return arr;
+}
+
+
 template <typename K, typename E>
 void BinaryTree<K, E>::addItemToArray(TNode<K, E>*node, int& pos, int* arr)
 {
@@ -162,6 +168,7 @@ void BinaryTree<K, E>::addItemToArray(TNode<K, E>*node, int& pos, int* arr)
 	}
 }
 
+//Clearing root
 template <typename K, typename E>
 void BinaryTree<K, E>::clear()
 {
@@ -169,6 +176,7 @@ void BinaryTree<K, E>::clear()
 	root = nullptr;
 }
 
+//Printing root in order
 template <typename K, typename E>
 void BinaryTree<K, E>::printInOrder()
 {
