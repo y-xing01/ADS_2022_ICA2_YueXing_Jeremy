@@ -112,7 +112,7 @@ namespace TNodeTest
 			node.add(3, 3);
 			node.add(5, 5);
 			node.add(7, 7);
-			Assert::AreEqual(7, node.countItem());
+			Assert::AreEqual(7, node.count());
 
 		}
 	};

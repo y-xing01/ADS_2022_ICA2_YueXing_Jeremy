@@ -22,7 +22,7 @@ public:
 	TNode();
 	TNode(K key, E item);
 	void setItem(K key, E item);
-	int countItem();
+	int count();
 	void add(K key, E item);
 	TNode<K, E>* getLeft();
 	TNode<K, E>* getRight();
@@ -121,16 +121,16 @@ TNode<K, E>::TNode(K key, E item)
 }
 
 template <typename K, typename E>
-int TNode<K, E>::countItem()
+int TNode<K, E>::count()
 {
 	int amount = 1;
 	if (left != nullptr)
 	{
-		amount += left->countItem();
+		amount += left->count();
 	}
 	if (right != nullptr)
 	{
-		amount += right->countItem();
+		amount += right->count();
 	}
 	return amount;
 }
