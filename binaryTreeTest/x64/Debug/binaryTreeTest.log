@@ -1,0 +1,26 @@
+﻿  binaryTreeTest.cpp
+C:\Users\User\source\repos\YueXing_Jeremy_ADSCA2\ADS_CA2_TREE\BinaryTree.h(55,1): error C2660: 'TNode<K,E>::setItem': function does not take 1 arguments
+          with
+          [
+              K=int,
+              E=int
+          ]
+C:\Users\User\source\repos\YueXing_Jeremy_ADSCA2\ADS_CA2_TREE\TNode.h(24,7): message : see declaration of 'TNode<K,E>::setItem'
+          with
+          [
+              K=int,
+              E=int
+          ]
+C:\Users\User\source\repos\YueXing_Jeremy_ADSCA2\ADS_CA2_TREE\BinaryTree.h(50): message : while compiling class template member function 'void BinaryTree<int,int>::add(K,E)'
+          with
+          [
+              K=int,
+              E=int
+          ]
+C:\Users\User\source\repos\YueXing_Jeremy_ADSCA2\binaryTreeTest\binaryTreeTest.cpp(17): message : see reference to function template instantiation 'void BinaryTree<int,int>::add(K,E)' being compiled
+          with
+          [
+              K=int,
+              E=int
+          ]
+C:\Users\User\source\repos\YueXing_Jeremy_ADSCA2\binaryTreeTest\binaryTreeTest.cpp(16): message : see reference to class template instantiation 'BinaryTree<int,int>' being compiled
