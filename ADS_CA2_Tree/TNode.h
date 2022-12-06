@@ -92,7 +92,7 @@ void TNode<K, E>::add(K keyItem, E item)
 		if (right == nullptr)
 		{
 			right = new TNode<K, E>(keyItem, item);
-			right->data = keyItem;
+			right->item = keyItem;
 			right->parentItem = this;
 		}
 		else
