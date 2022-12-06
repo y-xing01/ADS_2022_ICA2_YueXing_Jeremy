@@ -41,6 +41,45 @@ public:
 
 	void setData(E item) { this->data = item; }
 	E getData() const { return this->data; }
-
-
 };
+
+template <typename K, typename E>
+TNode<K, E>::~TNode()
+{
+	delete left;
+	delete right;
+}
+
+template <typename K, typename E>
+void TNode<K, E>::add(K keyItem, E item)
+{
+	if (keyItem == this->key)
+	{
+		return;
+	}
+	else if (keyItem < this->key)
+	{
+		if (left == nullptr)
+		{
+			left = new TNode<K, E>(keyItem, item);
+		}
+		else
+		{
+			left->add(keyItem, item);
+		}
+	}
+	else
+	{
+		if (right == nullptr)
+		{
+			right = new TNode<K, E>(keyItem, item);
+			right->data = keyItem;
+			right->parentItem = this;
+		}
+		else
+		{
+			right->add(keyItem, item);
+		}
+	}
+}
+
