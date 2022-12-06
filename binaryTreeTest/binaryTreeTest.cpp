@@ -292,5 +292,14 @@ namespace binaryTreeTest
 			Assert::AreEqual(true, result);
 		}
 
+		TEST_METHOD(TestFindDepth)
+		{
+			BinaryTree<int, int> tree;
+			tree.add(1, 1);
+			tree.add(2, 2);
+			tree.add(3, 3);
+			int depth = tree.findDepth(tree.root, 3);
+			Assert::AreEqual(2, depth);
+		}
 	};
 }
