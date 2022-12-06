@@ -287,18 +287,10 @@ namespace binaryTreeTest
 			tree.add(3, 3);
 			tree.add(5, 5);
 			tree.add(7, 7);
-			Assert::AreEqual(7, tree.count());
-			tree.search(5);
-			Assert::AreEqual(6, tree.count());
-			Assert::AreEqual(4, tree.root->getItem());
-			Assert::AreEqual(2, tree.root->getLeft()->getItem());
-			Assert::AreEqual(6, tree.root->getRight()->getItem());
-			TNode<int, int>* left = tree.root->getLeft();
-			TNode<int, int>* right = tree.root->getRight();
-			Assert::AreEqual(1, left->getLeft()->getItem());
-			Assert::AreEqual(3, left->getRight()->getItem());
-			Assert::IsNull(right->getLeft());
-			Assert::AreEqual(7, right->getRight()->getItem());
+			tree.add(15, 15);
+			bool result = tree.search(7);
+			Assert::AreEqual(true, result);
 		}
+
 	};
 }

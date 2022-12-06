@@ -23,6 +23,7 @@ public:
 	void printPreOrder(TNode<K, E>* node);
 	void printPostOrder();
 	void printPostOrder(TNode<K, E>* node);
+	int findDepth(TNode<K, E>* root, K x);
 
 	K* toArray();
 	~BinaryTree();
@@ -176,49 +177,6 @@ bool BinaryTree<K, E>::search(K key)
 	}
 	if (!found)
 		return false;
-
-	if (toBeSearch->getLeft() == nullptr || toBeSearch->getRight() == nullptr)
-	{
-		TNode<K, E>* newChild;
-		if (toBeSearch->getLeft() == nullptr)
-		{
-			newChild = toBeSearch->getRight();
-		}
-		else
-		{
-			newChild = toBeSearch->getLeft();
-		}
-		if (parent == nullptr)
-		{
-			root = newChild;
-		}
-		else if (parent->getLeft() == toBeSearch)
-		{
-			parent->setLeft(newChild);
-		}
-		else
-		{
-			parent->setRight(newChild);
-		}
-		return true;
-	}
-
-	TNode<K, E>* smallestParent = toBeSearch;
-	TNode<K, E>* smallest = toBeSearch->getRight();
-	while (smallest->getLeft() != nullptr)
-	{
-		smallestParent = smallest;
-		smallest = smallest->getLeft();
-	}
-	toBeSearch->setItem(smallest->getItem());
-	if (smallestParent == toBeSearch)
-	{
-		smallestParent->setRight(smallest->getRight());
-	}
-	else
-	{
-		smallestParent->setLeft(smallest->getRight());
-	}
 }
 
 //Adding item to Array
@@ -308,3 +266,4 @@ void BinaryTree<K, E>::printPostOrder(TNode<K, E>* node)
 		cout << node->getItem() << " ";
 	}
 }
+
