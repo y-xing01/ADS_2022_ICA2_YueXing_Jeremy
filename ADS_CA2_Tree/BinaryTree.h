@@ -13,6 +13,7 @@ public:
 	BinaryTree();
 	void add(K key, E item);
 	bool remove(K key);
+	bool search(K key);
 	void clear();
 	int count();
 
@@ -26,9 +27,9 @@ public:
 	K* toArray();
 	~BinaryTree();
 
-	E* search(K key) {
-		return nullptr;
-	}
+	//E* search(K key) {
+	//	return nullptr;
+	//}
 };
 
 //Constructor
@@ -144,6 +145,7 @@ bool BinaryTree<K, E>::remove(K key)
 		smallestParent->setLeft(smallest->getRight());
 	}
 }
+
 
 //Adding item to Array
 template <typename K, typename E>
