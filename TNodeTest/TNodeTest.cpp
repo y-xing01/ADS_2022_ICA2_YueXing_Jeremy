@@ -24,31 +24,54 @@ namespace TNodeTest
 		}
 
 		/*
-			Testing getting left side item. Add a node as a child. All items should not be moved.
-			By Adding 2 the new node should be on the left side.
+			Testing getting left side item. Add a node as a child. Position of item will not be affected.
+			Adding 1 the new node should be on the left side.
 		*/
 		TEST_METHOD(getLeftTest)
 		{
-			TNode<int, int> node(4, 4);
-			Assert::AreEqual(4, node.getItem());
+			TNode<int, int> node(2, 2);
+			Assert::AreEqual(2, node.getItem());
 			Assert::IsNull(node.getLeft());
-			node.add(2, 2);
+			node.add(1, 1);
 			Assert::IsNotNull(node.getLeft());
-			Assert::AreEqual(2, node.getLeft()->getItem());
+			Assert::AreEqual(1, node.getLeft()->getItem());
 		}
 
 		/*
-			Testing getting right side item. Add a node as a child. All items should not be moved.
-			By Adding 2 the new node should be on the left side.
+			Testing getting right side item. Add a node as a child. Position of item will not be affected.
+			Adding 4 the new node should be on the right side.
 		*/
 		TEST_METHOD(getRightTest)
 		{
-			TNode<int, int> node(4, 4);
-			Assert::AreEqual(4, node.getItem());
+			TNode<int, int> node(2, 2);
+			Assert::AreEqual(2, node.getItem());
 			Assert::IsNull(node.getRight());
-			node.add(6, 6);
+			node.add(4, 4);
 			Assert::IsNotNull(node.getRight());
-			Assert::AreEqual(6, node.getRight()->getItem());
+			Assert::AreEqual(4, node.getRight()->getItem());
+		}
+		/*
+			Testing getting right side item. Add a node as a child. Position of item will not be affected.
+			Adding 4 to the node, the new node should be on the right.
+			Then adding two children 3 and 5. They should be shown as below
+				2
+			   / \
+			  x   4
+			 /   / \
+			x	3   5
+		*/
+		TEST_METHOD(TestGreaterThanChildren)
+		{
+			TNode<int, int> node(2, 2);
+			node.add(4, 4);
+			TNode<int, int>* right = node.getRight();
+			node.add(3, 3);
+			node.add(5, 5);
+			Assert::IsNotNull(right->getLeft());
+			Assert::AreEqual(3, right->getLeft()->getItem());
+			Assert::IsNotNull(right->getRight());
+			Assert::AreEqual(5, right->getRight()->getItem());
+
 		}
 	};
 }
