@@ -30,7 +30,7 @@ public:
 	void setLeftSide(TNode<K, E>* l);
 	void setRightSide(TNode<K, E>* l);
 	K getKey();
-	E getData();
+	E getItem();
 	~TNode();
 
 	bool insert(K key, E item) {
@@ -83,3 +83,14 @@ void TNode<K, E>::add(K keyItem, E item)
 	}
 }
 
+template <typename K, typename E>
+K TNode<K, E>::getKey()
+{
+	return this->key;
+}
+
+template <typename K, typename E>
+E TNode<K, E>::getItem()
+{
+	return this->item;
+}
