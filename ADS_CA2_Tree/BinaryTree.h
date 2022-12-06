@@ -146,6 +146,80 @@ bool BinaryTree<K, E>::remove(K key)
 	}
 }
 
+//Search node
+template <typename K, typename E>
+bool BinaryTree<K, E>::search(K key)
+{
+	TNode<K, E>* toBeSearch = root;
+	TNode<K, E>* parent = nullptr;
+	bool found = false;
+
+	while (!found && toBeSearch != nullptr)
+	{
+
+		if (toBeSearch->getKey() == key)
+		{
+			found = true;
+		}
+		else
+		{
+			parent = toBeSearch;
+			if (toBeSearch->getKey() > key)
+			{
+				toBeSearch = toBeSearch->getLeft();
+			}
+			else
+			{
+				toBeSearch = toBeSearch->getRight();
+			}
+		}
+	}
+	if (!found)
+		return false;
+
+	if (toBeSearch->getLeft() == nullptr || toBeSearch->getRight() == nullptr)
+	{
+		TNode<K, E>* newChild;
+		if (toBeSearch->getLeft() == nullptr)
+		{
+			newChild = toBeSearch->getRight();
+		}
+		else
+		{
+			newChild = toBeSearch->getLeft();
+		}
+		if (parent == nullptr)
+		{
+			root = newChild;
+		}
+		else if (parent->getLeft() == toBeSearch)
+		{
+			parent->setLeft(newChild);
+		}
+		else
+		{
+			parent->setRight(newChild);
+		}
+		return true;
+	}
+
+	TNode<K, E>* smallestParent = toBeSearch;
+	TNode<K, E>* smallest = toBeSearch->getRight();
+	while (smallest->getLeft() != nullptr)
+	{
+		smallestParent = smallest;
+		smallest = smallest->getLeft();
+	}
+	toBeSearch->setItem(smallest->getItem());
+	if (smallestParent == toBeSearch)
+	{
+		smallestParent->setRight(smallest->getRight());
+	}
+	else
+	{
+		smallestParent->setLeft(smallest->getRight());
+	}
+}
 
 //Adding item to Array
 template <typename K, typename E>

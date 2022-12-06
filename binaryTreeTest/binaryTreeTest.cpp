@@ -266,6 +266,6 @@ namespace binaryTreeTest
 			Assert::AreEqual(14, tree.count());
 			Assert::AreEqual(13, tree.root->getRight()->getItem());
 			Assert::IsNull(tree.root->getRight()->getRight()->getLeft());
-		}
+		}		
 	};
 }
