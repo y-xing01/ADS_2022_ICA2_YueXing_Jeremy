@@ -10,7 +10,10 @@ namespace binaryTreeTest
 	TEST_CLASS(binaryTreeTest)
 	{
 	public:
-		
+		/*
+			This test ensures a node is created at the root when
+			an element is added to an empty binary tree
+		*/
 		TEST_METHOD(TestAddToEmptyTree)
 		{
 			BinaryTree<int, int> tree;
@@ -18,5 +21,24 @@ namespace binaryTreeTest
 			Assert::IsNotNull(tree.root);
 			Assert::AreEqual(1, tree.root->getKey());
 		}
+
+		/*
+			This test ensures a node is created on the left branch
+			when value is less than root.
+		*/
+		TEST_METHOD(TestAddToRootLeft)
+		{
+			BinaryTree<int, int> tree;
+			tree.add(2,2);
+			tree.add(1,1);
+			Assert::IsNotNull(tree.root);
+			Assert::AreEqual(2, tree.root->getItem());
+			TNode<int, int>* left = tree.root->getLeft();
+			Assert::IsNotNull(left);
+			Assert::AreEqual(1, left->getItem());
+		}
+
+		
+
 	};
 }
