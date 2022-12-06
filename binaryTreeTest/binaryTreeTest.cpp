@@ -267,5 +267,38 @@ namespace binaryTreeTest
 			Assert::AreEqual(13, tree.root->getRight()->getItem());
 			Assert::IsNull(tree.root->getRight()->getRight()->getLeft());
 		}		
+
+		/*
+			Test the search function to try and search an item
+			to test this we will use the following tree
+				4
+			   / \
+			  2   6
+			 / \ / \
+			1  3 5  7
+		*/
+		TEST_METHOD(TestSearchItem)
+		{
+			BinaryTree<int, int> tree;
+			tree.add(4, 4);
+			tree.add(2, 2);
+			tree.add(6, 6);
+			tree.add(1, 1);
+			tree.add(3, 3);
+			tree.add(5, 5);
+			tree.add(7, 7);
+			Assert::AreEqual(7, tree.count());
+			tree.search(5);
+			Assert::AreEqual(6, tree.count());
+			Assert::AreEqual(4, tree.root->getItem());
+			Assert::AreEqual(2, tree.root->getLeft()->getItem());
+			Assert::AreEqual(6, tree.root->getRight()->getItem());
+			TNode<int, int>* left = tree.root->getLeft();
+			TNode<int, int>* right = tree.root->getRight();
+			Assert::AreEqual(1, left->getLeft()->getItem());
+			Assert::AreEqual(3, left->getRight()->getItem());
+			Assert::IsNull(right->getLeft());
+			Assert::AreEqual(7, right->getRight()->getItem());
+		}
 	};
 }
