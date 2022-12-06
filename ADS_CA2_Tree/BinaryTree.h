@@ -173,7 +173,7 @@ void BinaryTree<K, E>::printInOrder()
 }
 
 template <typename K, typename E>
-void BinaryTree<K, E>::printInOrder(Tnode<K, E>* node)
+void BinaryTree<K, E>::printInOrder(TNode<K, E>* node)
 {
 
 	if (node != nullptr)
