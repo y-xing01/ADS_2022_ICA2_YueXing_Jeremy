@@ -51,7 +51,30 @@ namespace TNodeTest
 			Assert::AreEqual(4, node.getRight()->getItem());
 		}
 		/*
-			Testing getting right side item. Add a node as a child. Position of item will not be affected.
+		    Testing Adding less than children. Add a node as a child. Position of item will not be affected.
+			Adding 2 to the node, the new node should be on the right.
+			Then adding two children 1 and 3. They should be shown as below
+			    4
+			   / \
+			  2   x
+			 / \   \
+			1   3   x
+		*/
+		TEST_METHOD(TestLessThanChildren)
+		{
+			TNode<int, int> node(4, 4);
+			node.add(2, 2);
+			TNode<int, int>* left = node.getLeft();
+			node.add(1, 1);
+			node.add(3, 3);
+			Assert::IsNotNull(left->getLeft());
+			Assert::AreEqual(1, left->getLeft()->getItem());
+			Assert::IsNotNull(left->getRight());
+			Assert::AreEqual(3, left->getRight()->getItem());
+
+		}
+		/*
+			Testing Adding greater than children. Add a node as a child. Position of item will not be affected.
 			Adding 4 to the node, the new node should be on the right.
 			Then adding two children 3 and 5. They should be shown as below
 				2
