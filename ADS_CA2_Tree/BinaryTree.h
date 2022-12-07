@@ -27,10 +27,6 @@ public:
 
 	K* toArray();
 	~BinaryTree();
-
-	//E* search(K key) {
-	//	return nullptr;
-	//}
 };
 
 //Constructor
