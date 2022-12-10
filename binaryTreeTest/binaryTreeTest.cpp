@@ -310,5 +310,25 @@ namespace binaryTreeTest
 			int depth = tree.findDepth(tree.root, 3);
 			Assert::AreEqual(2, depth);
 		}
+
+		/*
+		 	Test the find Height function to find the depth of tree
+			to test this we will use the following tree
+				1
+			   / \
+			  2   x
+			 /     \
+			3       x
+		*/
+		TEST_METHOD(TestFindHeigth)
+		{
+			//number of edges on the longest path from the node to the leaf
+			BinaryTree<int, int> tree;
+			tree.add(1, 1);
+			tree.add(2, 2);
+			tree.add(3, 3);
+			int heigth = tree.getHeight(tree.root, 2);
+			Assert::AreEqual(1, heigth);
+		}
 	};
 }

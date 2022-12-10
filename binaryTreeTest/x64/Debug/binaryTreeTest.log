@@ -1,5 +1,21 @@
 ﻿  binaryTreeTest.cpp
-C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\ADS_CA2_TREE\BinaryTree.h(180): warning C4715: 'BinaryTree<int,int>::search': not all control paths return a value
-C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\ADS_CA2_TREE\BinaryTree.h(148): warning C4715: 'BinaryTree<int,int>::remove': not all control paths return a value
-     Creating library C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\x64\Debug\binaryTreeTest.lib and object C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\x64\Debug\binaryTreeTest.exp
-  binaryTreeTest.vcxproj -> C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\x64\Debug\binaryTreeTest.dll
+C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\ADS_CA2_TREE\BinaryTree.h(313,1): error C2664: 'int BinaryTree<int,int>::findHeight(TNode<K,E> *,K,int &)': cannot convert argument 3 from 'int' to 'int &'
+          with
+          [
+              K=int,
+              E=int
+          ]
+C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\ADS_CA2_TREE\BinaryTree.h(19,6): message : see declaration of 'BinaryTree<int,int>::findHeight'
+C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\ADS_CA2_TREE\BinaryTree.h(310): message : while compiling class template member function 'int BinaryTree<int,int>::getHeight(TNode<K,E> *,K)'
+          with
+          [
+              K=int,
+              E=int
+          ]
+C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\binaryTreeTest\binaryTreeTest.cpp(330): message : see reference to function template instantiation 'int BinaryTree<int,int>::getHeight(TNode<K,E> *,K)' being compiled
+          with
+          [
+              K=int,
+              E=int
+          ]
+C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\binaryTreeTest\binaryTreeTest.cpp(19): message : see reference to class template instantiation 'BinaryTree<int,int>' being compiled

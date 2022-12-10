@@ -1,9 +1,10 @@
 #pragma once
-//if E == Student (email, dob, address, id,...)
-//then K = Key(email, dob, address)
 #include "TNode.h"
 #include <vector>
+#include <iostream>
+#include <exception>
 
+using namespace std;
 template <typename K, typename E>
 class BinaryTree
 {
@@ -14,8 +15,9 @@ public:
 	bool remove(K key);
 	bool search(K key);
 	int count();
-	int findDepth(TNode<K, E>* root, K key);	
-	int findHeight(TNode<K, E>* root, K key);
+	int findDepth(TNode<K, E>* node, K key);
+	int findHeight(TNode<K, E>* node, K key, int& height);
+	int getHeight(TNode<K, E>* node, K key);
 
 	void add(K key, E item);
 	void printInOrder();
@@ -264,27 +266,50 @@ void BinaryTree<K, E>::printPostOrder(TNode<K, E>* node)
 	}
 }
 
+//Finding the depth of tree
 template <typename K, typename E>
-int BinaryTree<K, E>::findDepth(TNode<K, E>* root, K key)
+int BinaryTree<K, E>::findDepth(TNode<K, E>* node, K key)
 {
-	if (root == NULL)
+	//Check if tree is empty
+	if (node == NULL)
 		return -1;
 
-
+	//Starts from 0
 	int depth = -1;
-	// Check if x is current node=
-	if ((root->getKey() == key)
-
-		// Otherwise, check if x is
-		// present in the left subtree
-		|| (depth = findDepth(root->getLeft(), key)) >= 0
-
-		// Otherwise, check if x is
-		// present in the right subtree
-		|| (depth = findDepth(root->getRight(), key)) >= 0)
-
-		// Return depth of the node
+	// Check if x is current node or in left or right tree
+	if ((node->getKey() == key) || (depth = findDepth(node->getLeft(), key)) >= 0 || (depth = findDepth(node->getRight(), key)) >= 0)
 		return depth + 1;
 
 	return depth;
+}
+
+template <typename K, typename E>
+int BinaryTree<K, E>::findHeight(TNode<K, E>* node, K key, int& height)
+{
+	//Check if tree is empty
+	if (node == NULL) 
+		return -1;
+	
+	// Get height from both subtree
+	int leftTree = findHeight(node->getLeft(), key, height);
+	int rightTree = findHeight(node->getRight(), key, height);
+
+	// Finding highest height of the tree
+	int fHeight = max(leftTree, rightTree) + 1;
+
+	if (node->getKey() == key)
+		height = fHeight;
+
+	return fHeight;
+}
+
+template <typename K, typename E>
+int BinaryTree<K, E>::getHeight(TNode<K, E>* node, K key)
+{
+	// Stores height 
+	int height = -1; // Height Starts from 0
+	int res = findHeight(node, key, (height));
+
+	// Return height of node
+	return height;
 }
