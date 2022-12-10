@@ -296,7 +296,11 @@ int BinaryTree<K, E>::getHeight(TNode<K, E>* node)
 	int left_height = getHeight(node->getLeft());
 	int right_height = getHeight(node->getRight());
 
-	// Return the maximum of the two subtree heights, plus one for the current node
+	// If either subtree height is negative, throw an exception
+	if (left_height < 0 || right_height < 0)
+		throw std::runtime_error("getHeight() called on invalid tree");
+
+	// Return the maximum of the two subtree heights, plus one for the current
 	return std::max(left_height, right_height) + 1;
 }
 
