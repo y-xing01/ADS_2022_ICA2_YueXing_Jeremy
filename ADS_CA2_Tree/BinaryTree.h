@@ -271,19 +271,25 @@ void BinaryTree<K, E>::printPostOrder(TNode<K, E>* node)
 template <typename K, typename E>
 int BinaryTree<K, E>::findDepth(TNode<K, E>* node, K key)
 {
-	//Check if tree is empty
-	if (node == NULL)
-		return -1;
+	try
+	{
+		//Check if tree is empty
+		if (node == NULL)
+			return -1;
 
-	//Starts from 0
-	int depth = -1;
-	// Check if x is current node or in left or right tree
-	if ((node->getKey() == key) || (depth = findDepth(node->getLeft(), key)) >= 0 || (depth = findDepth(node->getRight(), key)) >= 0)
-		return depth + 1;
+		//Starts from 0
+		int depth = -1;
+		// Check if x is current node or in left or right tree
+		if ((node->getKey() == key) || (depth = findDepth(node->getLeft(), key)) >= 0 ||  (depth = findDepth(node->getRight(), key)) >= 0)
+			return depth + 1;
 
-	return depth;
+		return depth;
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "An error occurred. Please try again." << std::endl;
+	}
 }
-
 
 template <typename K, typename E>
 int BinaryTree<K, E>::getHeight(TNode<K, E>* node)
