@@ -344,11 +344,11 @@ namespace binaryTreeTest
 		/*
 			Test the isBalance function to find if tree is balanced
 			to test this we will use the following tree
-				1
+				4
 			   / \
-			  2   x
-			 /     \
-			3       x
+			  2   6
+			 / \ / \
+			1  3 5  7
 		*/
 		TEST_METHOD(TestIsBalanced)
 		{
@@ -368,6 +368,31 @@ namespace binaryTreeTest
 			// Verify that the tree is balanced
 			Assert::IsTrue(is_balanced);
 		}
-	
+
+		/*
+			Test the isBalance function to find if tree is balanced
+			to test this we will use the following tree
+				4
+			   / \
+			  2  
+			 / \
+			1  3 
+		*/		
+		TEST_METHOD(TestBalanceTree)
+		{
+			// Create a binary tree and add some keys to it
+			BinaryTree<int, int> tree;
+			tree.add(4, 4);
+			tree.add(2, 2);
+			tree.add(1, 1);
+			tree.add(3, 3);
+
+
+			// Balance the tree
+			balanceTree(tree);
+
+			// Verify that the tree is balanced
+			Assert::IsTrue(tree.isBalanced());
+		}
 	};
 }
