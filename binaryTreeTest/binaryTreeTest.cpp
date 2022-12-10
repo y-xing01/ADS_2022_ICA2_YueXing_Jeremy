@@ -292,6 +292,15 @@ namespace binaryTreeTest
 			Assert::AreEqual(true, result);
 		}
 
+		/*
+			Test the find Depth function to find the depth of tree
+			to test this we will use the following tree
+				1
+			   / \
+			  2   x
+			 /     \
+			3       x
+		*/
 		TEST_METHOD(TestFindDepth)
 		{
 			BinaryTree<int, int> tree;

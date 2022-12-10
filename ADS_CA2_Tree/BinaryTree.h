@@ -11,19 +11,20 @@ class BinaryTree
 public:
 	TNode<K, E>* root;
 	BinaryTree();
-	void add(K key, E item);
 	bool remove(K key);
 	bool search(K key);
-	void clear();
 	int count();
+	int findDepth(TNode<K, E>* root, K key);	
+	int findHeight(TNode<K, E>* root, K key);
 
+	void add(K key, E item);
 	void printInOrder();
 	void printInOrder(TNode<K, E>* node);
 	void printPreOrder();
 	void printPreOrder(TNode<K, E>* node);
 	void printPostOrder();
 	void printPostOrder(TNode<K, E>* node);
-	int findDepth(TNode<K, E>* root, K x);
+	void clear();
 
 	K* toArray();
 	~BinaryTree();
@@ -264,26 +265,26 @@ void BinaryTree<K, E>::printPostOrder(TNode<K, E>* node)
 }
 
 template <typename K, typename E>
-int BinaryTree<K, E>::findDepth(TNode<K, E>* root, K x)
+int BinaryTree<K, E>::findDepth(TNode<K, E>* root, K key)
 {
 	if (root == NULL)
 		return -1;
 
 
-	int dist = -1;
+	int depth = -1;
 	// Check if x is current node=
-	if ((root->getKey() == x)
+	if ((root->getKey() == key)
 
 		// Otherwise, check if x is
 		// present in the left subtree
-		|| (dist = findDepth(root->getLeft(), x)) >= 0
+		|| (depth = findDepth(root->getLeft(), key)) >= 0
 
 		// Otherwise, check if x is
 		// present in the right subtree
-		|| (dist = findDepth(root->getRight(), x)) >= 0)
+		|| (depth = findDepth(root->getRight(), key)) >= 0)
 
 		// Return depth of the node
-		return dist + 1;
+		return depth + 1;
 
-	return dist;
+	return depth;
 }

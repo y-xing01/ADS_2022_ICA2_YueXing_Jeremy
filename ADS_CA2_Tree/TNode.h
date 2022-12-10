@@ -17,11 +17,11 @@ public:
 	void setData(K key, E item);
 	int count();
 	void add(K key, E item);
+	void setLeft(TNode<K, E>* left);
+	void setRight(TNode<K, E>* right);
 	TNode<K, E>* getLeft();
 	TNode<K, E>* getRight();
 	TNode<K, E>* getParent();
-	void setLeft(TNode<K, E>* left);
-	void setRight(TNode<K, E>* right);
 	K getKey();
 	E getItem();
 	~TNode();
