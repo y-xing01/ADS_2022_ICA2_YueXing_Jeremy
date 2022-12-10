@@ -15,10 +15,10 @@ public:
 	BinaryTree();
 	bool remove(K key);
 	bool search(K key);
+	bool BinaryTree<K, E>::isBalanced();
 	int count();
 	int findDepth(TNode<K, E>* node, K key);
-	int findHeight(TNode<K, E>* node, K key, int& height);
-	int getHeight(TNode<K, E>* node, K key);
+	int BinaryTree<K, E>::getHeight(TNode<K, E>* node);
 
 	void add(K key, E item);
 	void printInOrder();
@@ -28,7 +28,7 @@ public:
 	void printPostOrder();
 	void printPostOrder(TNode<K, E>* node);
 	void clear();
-
+	void balanceTree(BinaryTree<K, E>& tree);
 	K* toArray();
 	~BinaryTree();
 };
@@ -284,35 +284,20 @@ int BinaryTree<K, E>::findDepth(TNode<K, E>* node, K key)
 	return depth;
 }
 
-template <typename K, typename E>
-int BinaryTree<K, E>::findHeight(TNode<K, E>* node, K key, int& height)
-{
-	//Check if tree is empty
-	if (node == NULL) 
-		return -1;
-	
-	// Get height from both subtree
-	int leftTree = findHeight(node->getLeft(), key, height);
-	int rightTree = findHeight(node->getRight(), key, height);
-
-	// Finding highest height of the tree
-	int fHeight = max(leftTree, rightTree) + 1;
-
-	if (node->getKey() == key)
-		height = fHeight;
-
-	return fHeight;
-}
 
 template <typename K, typename E>
-int BinaryTree<K, E>::getHeight(TNode<K, E>* node, K key)
+int BinaryTree<K, E>::getHeight(TNode<K, E>* node)
 {
-	// Stores height 
-	int height = -1; // Height Starts from 0
-	int res = findHeight(node, key, (height));
+	// If the tree is empty, return 0
+	if (node == NULL)
+		return 0;
 
-	// Return height of node
-	return height;
+	// Calculate the height of the left and right subtrees of the current node
+	int left_height = getHeight(node->getLeft());
+	int right_height = getHeight(node->getRight());
+
+	// Return the maximum of the two subtree heights, plus one for the current node
+	return std::max(left_height, right_height) + 1;
 }
 
 template <class K, class E>
