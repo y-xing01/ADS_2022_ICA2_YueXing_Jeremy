@@ -15,7 +15,6 @@ public:
 	BinaryTree();
 	bool remove(K key);
 	bool search(K key);
-	bool BinaryTree<K, E>::isBalanced();
 	int count();
 	int findDepth(TNode<K, E>* node, K key);
 	int BinaryTree<K, E>::getHeight(TNode<K, E>* node);

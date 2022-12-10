@@ -1,4 +1,0 @@
-﻿  binaryTreeTest.cpp
-C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\ADS_CA2_TREE\BinaryTree.h(180): warning C4715: 'BinaryTree<int,int>::search': not all control paths return a value
-C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\ADS_CA2_TREE\BinaryTree.h(148): warning C4715: 'BinaryTree<int,int>::remove': not all control paths return a value
-  binaryTreeTest.vcxproj -> C:\Users\User\Source\Repos\YueXing_Jeremy_ADSCA2\x64\Debug\binaryTreeTest.dll
