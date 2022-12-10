@@ -19,6 +19,7 @@ public:
 	int count();
 	int findDepth(TNode<K, E>* node, K key);
 	int BinaryTree<K, E>::getHeight(TNode<K, E>* node);
+	bool BinaryTree<K, E>::isBalanced();
 
 	void add(K key, E item);
 	void printInOrder();
@@ -27,8 +28,8 @@ public:
 	void printPreOrder(TNode<K, E>* node);
 	void printPostOrder();
 	void printPostOrder(TNode<K, E>* node);
-	void clear();
 	void balanceTree(BinaryTree<K, E>& tree);
+	void clear();
 	K* toArray();
 	~BinaryTree();
 };
@@ -325,4 +326,43 @@ TNode<K, E>* BinaryTree<K, E>::subtree(TNode<K, E>* node, K key) {
 
 	//Returns NULL if no such node exists in the subtree.
 	return NULL;
+}
+
+template <typename K, typename E>
+void balanceTree(BinaryTree<K, E>& tree)
+{
+	// Convert the tree to an array of keys
+	int n = tree.count();
+	int* arr = tree.toArray();
+
+	// Clear the tree
+	tree.clear();
+
+	// Add the keys from the array to the tree, starting with the middle key
+	// and working outwards to the left and right ends of the array
+	int min = 0, max = n - 1;
+	while (min <= max)
+	{
+		int mid = (min + max) / 2;
+		tree.add(arr[mid], arr[mid]);
+		min = mid + 1;
+		max = mid - 1;
+	}
+
+	// Clean up
+	delete[] arr;
+}
+
+template <typename K, typename E>
+bool BinaryTree<K, E>::isBalanced()
+{
+	// Check if the tree is empty
+	if (root == NULL)
+		return true;
+
+	// Check if the tree is balanced by comparing the height of the left and right subtrees
+	// of the root node. Return true if they differ by at most one, or false otherwise.
+	int left_height = getHeight(root->getLeft());
+	int right_height = getHeight(root->getRight());
+	return abs(left_height - right_height) <= 1;
 }

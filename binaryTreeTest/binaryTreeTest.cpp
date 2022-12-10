@@ -295,47 +295,104 @@ namespace binaryTreeTest
 		/*
 			Test the find Depth function to find the depth of tree
 			to test this we will use the following tree
-				1
+				3
 			   / \
 			  2   x
 			 /     \
-			3       x
+			1       x
 		*/
 		TEST_METHOD(TestFindDepth)
+		{
+			BinaryTree<int, int> tree;
+			tree.add(3, 3);
+			tree.add(2, 2);
+			tree.add(1, 1);
+			int depth = tree.findDepth(tree.root, 1);
+			Assert::AreEqual(2, depth);
+		}
+
+		/*
+			Test the find Height function to find the depth of tree
+			to test this we will use the following tree
+				1
+			   / \
+			  x   2
+			 /     \
+			x       3
+					 \
+					  4
+					   \
+					    5
+						 \
+						  6
+		*/
+		TEST_METHOD(TestGetHeight)
 		{
 			BinaryTree<int, int> tree;
 			tree.add(1, 1);
 			tree.add(2, 2);
 			tree.add(3, 3);
-			int depth = tree.findDepth(tree.root, 3);
-			Assert::AreEqual(2, depth);
+			tree.add(4, 4);
+			tree.add(5, 5);
+			tree.add(6, 6);
+
+			int height = tree.getHeight(tree.root);
+
+			Assert::AreEqual(6, height);
 		}
 
 		/*
-		 	Test the find Height function to find the depth of tree
+			Test the isBalance function to find if tree is balanced
 			to test this we will use the following tree
-				1
+				4
 			   / \
-			  2   x
-			 /     \
-			3       x
+			  2   6
+			 / \ / \
+			1  3 5  7
 		*/
-		TEST_METHOD(TestFindHeight)
+		TEST_METHOD(TestIsBalanced)
 		{
-			//number of edges on the longest path from the node to the leaf
+			// Create a binary tree and add some keys to it
 			BinaryTree<int, int> tree;
-			tree.add(10, 10);
-			tree.add(20, 20);
-			tree.add(30, 30);
-			tree.add(40, 40);
-			tree.add(50, 50);
-			tree.add(60, 60);
+			tree.add(4, 4);
+			tree.add(2, 2);
+			tree.add(6, 6);
+			tree.add(1, 1);
+			tree.add(3, 3);
+			tree.add(5, 5);
+			tree.add(7, 7);
 
-			// Calculate the height of the tree
-			int height = tree.getHeight(tree.root);
+			// Check if the tree is balanced
+			bool is_balanced = tree.isBalanced();
 
-			// Verify that the height is correct
-			Assert::AreEqual(6, height);
+			// Verify that the tree is balanced
+			Assert::IsTrue(is_balanced);
+		}
+
+		/*
+			Test the isBalance function to find if tree is balanced
+			to test this we will use the following tree
+				4
+			   / \
+			  2  
+			 / \
+			1  3 
+		*/		
+		TEST_METHOD(TestBalanceTree)
+		{
+			// Create a binary tree and add some keys to it
+			BinaryTree<int, int> tree;
+			tree.add(4, 4);
+			tree.add(2, 2);
+			tree.add(1, 1);
+			tree.add(3, 3);
+
+
+			// Balance the tree
+			balanceTree(tree);
+
+			// Verify that the tree is balanced
+			Assert::IsTrue(tree.isBalanced());
 		}
 	};
 }
