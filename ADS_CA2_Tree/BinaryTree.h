@@ -17,8 +17,7 @@ public:
 	bool search(K key);
 	int count();
 	int findDepth(TNode<K, E>* node, K key);
-	int findHeight(TNode<K, E>* node, K key, int& height);
-	int getHeight(TNode<K, E>* node, K key);
+	int BinaryTree<K, E>::getHeight(TNode<K, E>* node);
 
 	void add(K key, E item);
 	void printInOrder();
@@ -27,6 +26,7 @@ public:
 	void printPreOrder(TNode<K, E>* node);
 	void printPostOrder();
 	void printPostOrder(TNode<K, E>* node);
+	void createBalanceTree(BinaryTree<K, E>& tree, int min, int max, int* arr);
 	void clear();
 
 	K* toArray();
@@ -285,34 +285,18 @@ int BinaryTree<K, E>::findDepth(TNode<K, E>* node, K key)
 }
 
 template <typename K, typename E>
-int BinaryTree<K, E>::findHeight(TNode<K, E>* node, K key, int& height)
+int BinaryTree<K, E>::getHeight(TNode<K, E>* node)
 {
-	//Check if tree is empty
-	if (node == NULL) 
-		return -1;
-	
-	// Get height from both subtree
-	int leftTree = findHeight(node->getLeft(), key, height);
-	int rightTree = findHeight(node->getRight(), key, height);
+	// If the tree is empty, return 0
+	if (node == NULL)
+		return 0;
 
-	// Finding highest height of the tree
-	int fHeight = max(leftTree, rightTree) + 1;
+	// Calculate the height of the left and right subtrees of the current node
+	int left_height = getHeight(node->getLeft());
+	int right_height = getHeight(node->getRight());
 
-	if (node->getKey() == key)
-		height = fHeight;
-
-	return fHeight;
-}
-
-template <typename K, typename E>
-int BinaryTree<K, E>::getHeight(TNode<K, E>* node, K key)
-{
-	// Stores height 
-	int height = -1; // Height Starts from 0
-	int res = findHeight(node, key, (height));
-
-	// Return height of node
-	return height;
+	// Return the maximum of the two subtree heights, plus one for the current node
+	return std::max(left_height, right_height) + 1;
 }
 
 template <class K, class E>
@@ -340,4 +324,16 @@ TNode<K, E>* BinaryTree<K, E>::subtree(TNode<K, E>* node, K key) {
 
 	//Returns NULL if no such node exists in the subtree.
 	return NULL;
+}
+
+template <typename K, typename E>
+void createBalanceTree(BinaryTree<K, E>& tree, int min, int max, int* arr)
+{
+	if (min < max)
+	{
+		int mid = (min + max) / 2;
+		tree.add(arr[mid], arr[mid]);
+		createBalanceTree(tree, min, mid, arr);
+		createBalanceTree(tree, mid + 1, max, arr);
+	}
 }
