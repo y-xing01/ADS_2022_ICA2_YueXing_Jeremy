@@ -344,6 +344,7 @@ void balanceTree(BinaryTree<K, E>& tree)
 	// Convert the tree to an array of keys
 	int n = tree.count();
 	int* arr = tree.toArray();
+	const int EXCEPTION_KEY = 100;
 
 	// Clear the tree
 	tree.clear();
@@ -354,6 +355,16 @@ void balanceTree(BinaryTree<K, E>& tree)
 	while (min <= max)
 	{
 		int mid = (min + max) / 2;
+
+		// Key that you want to exclude from the balanced tree. 
+		// When the middle key is the exception key, the code skips that key and moves on to the next key.
+		if (arr[mid] == EXCEPTION_KEY)
+		{
+			// Skip the middle key and move on to the next key
+			min = mid + 1;
+			continue;
+		}
+
 		tree.add(arr[mid], arr[mid]);
 		min = mid + 1;
 		max = mid - 1;
