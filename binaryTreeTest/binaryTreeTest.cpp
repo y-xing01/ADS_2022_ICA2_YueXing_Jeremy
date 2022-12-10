@@ -320,7 +320,7 @@ namespace binaryTreeTest
 			 /     \
 			3       x
 		*/
-		TEST_METHOD(TestFindHeigth)
+		TEST_METHOD(TestFindHeight)
 		{
 			//number of edges on the longest path from the node to the leaf
 			BinaryTree<int, int> tree;
