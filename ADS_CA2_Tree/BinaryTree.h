@@ -377,13 +377,21 @@ void balanceTree(BinaryTree<K, E>& tree)
 template <typename K, typename E>
 bool BinaryTree<K, E>::isBalanced()
 {
-	// Check if the tree is empty
-	if (root == NULL)
-		return true;
+	try
+	{
+		// Check if the tree is empty
+		if (root == NULL)
+			return true;
 
-	// Check if the tree is balanced by comparing the height of the left and right subtrees
-	// of the root node. Return true if they differ by at most one, or false otherwise.
-	int left_height = getHeight(root->getLeft());
-	int right_height = getHeight(root->getRight());
-	return abs(left_height - right_height) <= 1;
+		// Check if the tree is balanced by comparing the height of the left and right subtrees
+		// of the root node. Return true if they differ by at most one, or false otherwise.
+		int left_height = getHeight(root->getLeft());
+		int right_height = getHeight(root->getRight());
+		return abs(left_height - right_height) <= 1;
+	}
+	catch (const std::exception& e)
+	{
+		// Handle the exception here
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
 }
