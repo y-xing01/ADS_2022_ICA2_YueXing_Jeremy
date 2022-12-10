@@ -26,7 +26,7 @@ public:
 	void printPreOrder(TNode<K, E>* node);
 	void printPostOrder();
 	void printPostOrder(TNode<K, E>* node);
-	void createBalanceTree(BinaryTree<K, E>& tree, int min, int max, int* arr);
+	void balanceTree(BinaryTree<K, E>& tree);
 	void clear();
 
 	K* toArray();
@@ -327,13 +327,26 @@ TNode<K, E>* BinaryTree<K, E>::subtree(TNode<K, E>* node, K key) {
 }
 
 template <typename K, typename E>
-void createBalanceTree(BinaryTree<K, E>& tree, int min, int max, int* arr)
+void balanceTree(BinaryTree<K, E>& tree)
 {
-	if (min < max)
+	// Convert the tree to an array of keys
+	int n = tree.count();
+	int* arr = tree.toArray();
+
+	// Clear the tree
+	tree.clear();
+
+	// Add the keys from the array to the tree, starting with the middle key
+	// and working outwards to the left and right ends of the array
+	int min = 0, max = n - 1;
+	while (min <= max)
 	{
 		int mid = (min + max) / 2;
 		tree.add(arr[mid], arr[mid]);
-		createBalanceTree(tree, min, mid, arr);
-		createBalanceTree(tree, mid + 1, max, arr);
+		min = mid + 1;
+		max = mid - 1;
 	}
+
+	// Clean up
+	delete[] arr;
 }
