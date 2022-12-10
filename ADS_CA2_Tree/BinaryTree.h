@@ -11,6 +11,7 @@ class BinaryTree
 	void addItemToArray(TNode<K, E>* node, int& pos, int* arr);
 public:
 	TNode<K, E>* root;
+	TNode<K, E>* subtree(TNode<K, E>* node, K key);
 	BinaryTree();
 	bool remove(K key);
 	bool search(K key);
@@ -312,4 +313,31 @@ int BinaryTree<K, E>::getHeight(TNode<K, E>* node, K key)
 
 	// Return height of node
 	return height;
+}
+
+template <class K, class E>
+TNode<K, E>* BinaryTree<K, E>::subtree(TNode<K, E>* node, K key) {
+	//Check if tree is empty
+	if (node == NULL) 
+		return NULL;
+
+	//If key matches, returns node
+	if (node->getKey() == key)
+		return node;
+
+	//Searches the left and right subtrees
+	TNode<K, E>* leftSub = subtree(node->getLeft(), key);
+	TNode<K, E>* rightSub = subtree(node->getRight(), key);
+
+	//Returns the root of that subtree as the new tree if the key is found
+	if (left_subtree != NULL)
+		return left_subtree;
+	
+
+	if (right_subtree != NULL) 
+		return right_subtree;
+	
+
+	//Returns NULL if no such node exists in the subtree.
+	return NULL;
 }
