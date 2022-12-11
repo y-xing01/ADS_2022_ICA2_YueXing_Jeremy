@@ -38,13 +38,6 @@ public:
 
 //Constructor
 template <typename K, typename E>
-TNode<K, E>::~TNode()
-{
-	delete left;
-	delete right;
-}
-
-template <typename K, typename E>
 TNode<K, E>::TNode()
 {
 	parent = nullptr;
@@ -60,6 +53,14 @@ TNode<K, E>::TNode(K key, E item)
 	right = nullptr;
 	this->key = key;
 	this->item = item;
+}
+
+//Destructor
+template <typename K, typename E>
+TNode<K, E>::~TNode()
+{
+	delete left;
+	delete right;
 }
 
 //Getter

@@ -12,6 +12,7 @@ class BinaryTree
 public:
 	TNode<K, E>* root;
 	TNode<K, E>* subtree(TNode<K, E>* node, K key);
+	TNode<K, E>* BinaryTree<K, E>::getMin(TNode<K, E>* root);
 	BinaryTree();
 	bool remove(K key);
 	bool search(K key);
@@ -29,6 +30,7 @@ public:
 	void printPostOrder(TNode<K, E>* node);
 	void balanceTree(BinaryTree<K, E>& tree);
 	void clear();
+	void BinaryTree<K, E>::deleteNodeChildren(TNode<K, E>* root, K key);
 	K* toArray();
 	~BinaryTree();
 };
@@ -394,4 +396,34 @@ bool BinaryTree<K, E>::isBalanced()
 		// Handle the exception here
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
+}
+
+template <class K, class E>
+TNode<K, E>* BinaryTree<K, E>::getMin(TNode<K, E>* root) {
+	if (root == NULL) return NULL;  // base case: tree is empty
+
+	// search for the leftmost leaf
+	if (root->getLeft() == NULL) {
+		return root;
+	}
+	else {
+		return getMin(root->getLeft());
+	}
+}
+
+template <class K, class E>
+void BinaryTree<K, E>::deleteNodeChildren(TNode<K, E>* root, K key) {
+	// If the tree is empty, return immediately
+	if (root == nullptr) return;
+
+	// If the current node is the one we want to remove, delete it and return
+	if (root->getKey() == key)
+	{
+		delete root;
+		return;
+	}
+
+	// Recursively search the left and right subtrees for the node to remove
+	deleteNodeChildren(root->getLeft(), key);
+	deleteNodeChildren(root->getRight(), key);
 }

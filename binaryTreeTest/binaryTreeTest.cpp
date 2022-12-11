@@ -394,5 +394,35 @@ namespace binaryTreeTest
 			// Verify that the tree is balanced
 			Assert::IsTrue(tree.isBalanced());
 		}
+
+		//TEST_METHOD(TestDeleteNodeChildren)
+		//{
+			//BinaryTree<int, int> tree;
+
+			// Insert some nodes into the tree
+			//tree.add(7, 10);
+			//tree.add(3, 20);
+			//tree.add(11, 30);
+			//tree.add(1, 40);
+			//tree.add(5, 50);
+			//tree.add(9, 60);
+			//tree.add(13, 70);
+
+			// Remove a leaf node with key = 1
+			//tree.deleteNodeChildren(tree.root, 1);
+
+			// Check that the node with key = 1 is no longer in the tree
+			//Assert::IsFalse(tree.search(1));
+
+			// Remove a node with one child, key = 5
+			//tree.deleteNodeChildren(tree.root, 5);
+
+			// Check that the node with key = 5 is no longer in the tree
+			//Assert::IsFalse(tree.search(5));
+
+			// Check that the left child of the node with key = 3 is now the node with key = 1
+			//int res = tree.root->getLeft()->getLeft()->getKey();
+			//Assert::AreEqual(1, res);
+		//}
 	};
 }
