@@ -341,6 +341,30 @@ namespace binaryTreeTest
 			Assert::AreEqual(6, height);
 		}
 
+		TEST_METHOD(TestSubtree) 
+		{
+			BinaryTree<int, int> tree;
+
+			// Insert some nodes into the tree
+			tree.add(4, 4);
+			tree.add(2, 2);
+			tree.add(6, 6);
+			tree.add(1, 1);
+			tree.add(3, 3);
+			tree.add(5, 5);
+			tree.add(7, 7);
+
+			// Search for the node with key 5
+			TNode<int, int>* node = tree.subtree(tree.root, 5);
+
+			// Check that the returned node is not NULL
+			Assert::IsNull(node);
+
+			// Check that the returned node has the expected key and value
+			Assert::AreEqual(node->getKey(), 5);
+			Assert::AreEqual(node->getItem(), 5);
+		}
+
 		/*
 			Test the isBalance function to find if tree is balanced
 			to test this we will use the following tree

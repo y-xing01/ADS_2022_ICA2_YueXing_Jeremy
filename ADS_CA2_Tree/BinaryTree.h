@@ -327,16 +327,13 @@ TNode<K, E>* BinaryTree<K, E>::subtree(TNode<K, E>* node, K key) {
 	TNode<K, E>* rightSub = subtree(node->getRight(), key);
 
 	//Returns the root of that subtree as the new tree if the key is found
-	if (left_subtree != NULL)
-		return left_subtree;
+	if (leftSub != NULL)
+		return leftSub;
 
-	if (right_subtree != NULL)
-		return right_subtree;
+	if (rightSub != NULL)
+		return rightSub;
 
-	// If the key is not found in the left or right subtree, throw an exception
-	throw std::runtime_error("Key not found in subtree");
-
-	//Returns NULL if no such node exists in the subtree.
+	// If the key is not found in the left or right subtree, return NULL
 	return NULL;
 }
 
