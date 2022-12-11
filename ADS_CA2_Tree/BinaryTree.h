@@ -1,4 +1,7 @@
 #pragma once
+//if E == Student (email, dob, address, id,...)
+//then K = Key(email, dob, address)
+#pragma once
 #include "TNode.h"
 #include <vector>
 #include <iostream>
@@ -11,15 +14,9 @@ class BinaryTree
 	void addItemToArray(TNode<K, E>* node, int& pos, int* arr);
 public:
 	TNode<K, E>* root;
-	TNode<K, E>* subtree(TNode<K, E>* node, K key);
-	TNode<K, E>* BinaryTree<K, E>::getMin(TNode<K, E>* root);
 	BinaryTree();
 	bool remove(K key);
-	bool search(K key);
 	int count();
-	int findDepth(TNode<K, E>* node, K key);
-	int BinaryTree<K, E>::getHeight(TNode<K, E>* node);
-	bool BinaryTree<K, E>::isBalanced();
 
 	void add(K key, E item);
 	void printInOrder();
@@ -28,12 +25,19 @@ public:
 	void printPreOrder(TNode<K, E>* node);
 	void printPostOrder();
 	void printPostOrder(TNode<K, E>* node);
-	void balanceTree(BinaryTree<K, E>& tree);
 	void clear();
-	void BinaryTree<K, E>::deleteNodeChildren(TNode<K, E>* root, K key);
-	void printAtDepth(TNode<K, E>* root, int depth);
+
 	K* toArray();
 	~BinaryTree();
+
+	bool search(K key);
+	int getDepth(TNode<K, E>* node, K key);
+	int getHeight(TNode<K, E>* node);
+	bool isBalanced();
+	void balanceTree(BinaryTree<K, E>& tree);
+	TNode<K, E>* subtree(TNode<K, E>* node, K key);
+	void printAtDepth(TNode<K, E>* root, int depth);
+	void deleteNodeChildren(TNode<K, E>* root, K key);
 };
 
 //Constructor
@@ -272,7 +276,7 @@ void BinaryTree<K, E>::printPostOrder(TNode<K, E>* node)
 
 //Finding the depth of tree
 template <typename K, typename E>
-int BinaryTree<K, E>::findDepth(TNode<K, E>* node, K key)
+int BinaryTree<K, E>::getDepth(TNode<K, E>* node, K key)
 {
 	try
 	{
@@ -283,7 +287,7 @@ int BinaryTree<K, E>::findDepth(TNode<K, E>* node, K key)
 		//Starts from 0
 		int depth = -1;
 		// Check if x is current node or in left or right tree
-		if ((node->getKey() == key) || (depth = findDepth(node->getLeft(), key)) >= 0 ||  (depth = findDepth(node->getRight(), key)) >= 0)
+		if ((node->getKey() == key) || (depth = getDepth(node->getLeft(), key)) >= 0 ||  (depth = getDepth(node->getRight(), key)) >= 0)
 			return depth + 1;
 
 		return depth;
@@ -414,35 +418,44 @@ void BinaryTree<K, E>::deleteNodeChildren(TNode<K, E>* root, K key) {
 }
 
 template <class K, class E>
+int calculateTreeDepth(TNode<K, E>* root) {
+	// Check if the tree is empty
+	if (root == NULL) {
+		// If the tree is empty, return 0 as the depth
+		return 0;
+	}
+
+	// Calculate the depth of the left and right subtrees
+	int leftDepth = calculateTreeDepth(root->getLeft());
+	int rightDepth = calculateTreeDepth(root->getRight());
+
+	// Return the maximum depth of the left and right subtrees
+	// We add 1 to account for the current node
+	return max(leftDepth, rightDepth) + 1;
+}
+
+template <class K, class E>
 void printAtDepth(TNode<K, E>* root, int depth) {
 	// Check if the tree is empty
-	if (root == NULL) return;
-
-	// Calculate the depth of the tree
-	int calculateDepth(TNode<K, E>*root) {
-		// Check if the tree is empty
-		if (root == NULL) return 0;
-
-		// Calculate the depth of the left and right subtrees
-		int leftDepth = calculateTreeDepth(root->getLeft());
-		int rightDepth = calculateTreeDepth(root->getRight());
-
-		// Return the maximum depth of the left and right subtrees
-		return max(leftDepth, rightDepth) + 1;
-	}
+	if (root == NULL) 
+		return;
 
 	// Calculate the depth of the tree
 	int treeDepth = calculateTreeDepth(root);
+	try {
+		// Check if the depth argument is out of range
+		if (depth < 0 || depth > treeDepth) {
+			throw runtime_error("Invalid argument: " + to_string(depth));
+		}
 
-	// Exception for range of depth
-	if (depth < 0 || depth > treeDepth) {
-		throw runtime_error("Invalid depth argument: " + to_string(depth));
+		// Print the data for the current node
+		cout << root->getKey() << ", ";
+
+		// Traverse the left and right subtrees
+		printAtDepth(root->getLeft(), depth - 1);
+		printAtDepth(root->getRight(), depth - 1);
 	}
-
-	// Print the data for the current node
-	cout << root->getKey() << ", ";
-
-	// Traverse the left and right subtrees
-	printAtDepth(root->getLeft(), depth - 1);
-	printAtDepth(root->getRight(), depth - 1);
+	catch (exception& e) {
+		  cout << "Error: " << e.what() << endl;
+	}
 }

@@ -305,7 +305,7 @@ namespace binaryTreeTest
 			tree.add(3, 3);
 			tree.add(2, 2);
 			tree.add(1, 1);
-			int depth = tree.findDepth(tree.root, 1);
+			int depth = tree.getDepth(tree.root, 1);
 			Assert::AreEqual(2, depth);
 		}
 
@@ -337,39 +337,6 @@ namespace binaryTreeTest
 			int height = tree.getHeight(tree.root);
 
 			Assert::AreEqual(6, height);
-		}
-
-		/*
-			Test the subtree function to find the node
-			to test this we will use the following tree
-			   4
-			  / \
-			 2   6
-		    / \ / \
-		   1  3 5  7
-		*/
-		TEST_METHOD(TestSubtree)
-		{
-			BinaryTree<int, int> tree;
-
-			// Insert some nodes into the tree
-			tree.add(4, 4);
-			tree.add(2, 2);
-			tree.add(6, 6);
-			tree.add(1, 1);
-			tree.add(3, 3);
-			tree.add(5, 5);
-			tree.add(7, 7);
-
-			// Search for the node with key 5
-			TNode<int, int>* node = tree.subtree(tree.root, 5);
-
-			// Check that the returned node is not NULL
-			Assert::IsNotNull(node);
-
-			// Check that the returned node has the expected key and value
-			Assert::AreEqual(node->getKey(), 5);
-			Assert::AreEqual(node->getItem(), 5);
 		}
 
 		/*
