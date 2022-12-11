@@ -2,9 +2,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../ADS_CA2_TREE/BinaryTree.h"
-
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-
 namespace binaryTreeTest
 {
 	TEST_CLASS(binaryTreeTest)
@@ -341,6 +339,15 @@ namespace binaryTreeTest
 			Assert::AreEqual(6, height);
 		}
 
+		/*
+			Test the subtree function to find the node
+			to test this we will use the following tree
+			   4
+			  / \
+			 2   6
+		    / \ / \
+		   1  3 5  7
+		*/
 		TEST_METHOD(TestSubtree)
 		{
 			BinaryTree<int, int> tree;
@@ -364,7 +371,6 @@ namespace binaryTreeTest
 			Assert::AreEqual(node->getKey(), 5);
 			Assert::AreEqual(node->getItem(), 5);
 		}
-
 
 		/*
 			Test the isBalance function to find if tree is balanced
@@ -418,7 +424,7 @@ namespace binaryTreeTest
 
 			// Verify that the tree is balanced
 			Assert::IsTrue(tree.isBalanced());
-		}
+		}	
 
 		//TEST_METHOD(TestDeleteNodeChildren)
 		//{

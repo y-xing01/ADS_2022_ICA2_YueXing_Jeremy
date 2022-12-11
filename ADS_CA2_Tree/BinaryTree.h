@@ -31,6 +31,7 @@ public:
 	void balanceTree(BinaryTree<K, E>& tree);
 	void clear();
 	void BinaryTree<K, E>::deleteNodeChildren(TNode<K, E>* root, K key);
+	void printAtDepth(TNode<K, E>* root, int depth);
 	K* toArray();
 	~BinaryTree();
 };
@@ -384,27 +385,14 @@ bool BinaryTree<K, E>::isBalanced()
 
 		// Check if the tree is balanced by comparing the height of the left and right subtrees
 		// of the root node. Return true if they differ by at most one, or false otherwise.
-		int left_height = getHeight(root->getLeft());
-		int right_height = getHeight(root->getRight());
-		return abs(left_height - right_height) <= 1;
+		int leftHeight = getHeight(root->getLeft());
+		int rightHeight = getHeight(root->getRight());
+		return abs(leftHeight - rightHeight) <= 1;
 	}
 	catch (const std::exception& e)
 	{
 		// Handle the exception here
 		std::cerr << "Error: " << e.what() << std::endl;
-	}
-}
-
-template <class K, class E>
-TNode<K, E>* BinaryTree<K, E>::getMin(TNode<K, E>* root) {
-	if (root == NULL) return NULL;  // base case: tree is empty
-
-	// search for the leftmost leaf
-	if (root->getLeft() == NULL) {
-		return root;
-	}
-	else {
-		return getMin(root->getLeft());
 	}
 }
 
@@ -423,4 +411,41 @@ void BinaryTree<K, E>::deleteNodeChildren(TNode<K, E>* root, K key) {
 	// Recursively search the left and right subtrees for the node to remove
 	deleteNodeChildren(root->getLeft(), key);
 	deleteNodeChildren(root->getRight(), key);
+}
+
+template <class K, class E>
+void printAtDepth(TNode<K, E>* root, int depth) {
+	if (root == NULL) return;  // base case: tree is empty
+
+	// calculate the depth of the tree
+	int calculateDepth(TNode<K, E>*root) {
+		if (root == NULL) return 0;  // base case: tree is empty
+
+		// calculate the depth of the left and right subtrees
+		int leftDepth = calculateTreeDepth(root->getLeft());
+		int rightDepth = calculateTreeDepth(root->getRight());
+
+		// return the maximum depth of the left and right subtrees
+		return max(leftDepth, rightDepth) + 1;
+	}
+
+	int treeDepth = calculateTreeDepth(root);
+	try {
+		// check if the depth argument is out of range
+		if (depth < 0 || depth > treeDepth) {
+			throw runtime_error("Invalid depth argument: " + to_string(depth));
+		}
+
+		if (depth == 0) {  // print the data for the current node
+			cout << root->getKey() << ", ";
+		}
+		else {  // traverse the left and right subtrees
+			cout << root->getKey() << ", ";
+			printAtDepth(root->getLeft(), depth - 1);
+			printAtDepth(root->getRight(), depth - 1);
+		}
+	}
+	catch (exception& e) {
+		cout << "Error: " << e.what() << endl;
+	}
 }
