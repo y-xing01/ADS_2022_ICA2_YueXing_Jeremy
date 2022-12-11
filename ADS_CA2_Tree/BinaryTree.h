@@ -415,37 +415,34 @@ void BinaryTree<K, E>::deleteNodeChildren(TNode<K, E>* root, K key) {
 
 template <class K, class E>
 void printAtDepth(TNode<K, E>* root, int depth) {
-	if (root == NULL) return;  // base case: tree is empty
+	// Check if the tree is empty
+	if (root == NULL) return;
 
-	// calculate the depth of the tree
+	// Calculate the depth of the tree
 	int calculateDepth(TNode<K, E>*root) {
-		if (root == NULL) return 0;  // base case: tree is empty
+		// Check if the tree is empty
+		if (root == NULL) return 0;
 
-		// calculate the depth of the left and right subtrees
+		// Calculate the depth of the left and right subtrees
 		int leftDepth = calculateTreeDepth(root->getLeft());
 		int rightDepth = calculateTreeDepth(root->getRight());
 
-		// return the maximum depth of the left and right subtrees
+		// Return the maximum depth of the left and right subtrees
 		return max(leftDepth, rightDepth) + 1;
 	}
 
+	// Calculate the depth of the tree
 	int treeDepth = calculateTreeDepth(root);
-	try {
-		// check if the depth argument is out of range
-		if (depth < 0 || depth > treeDepth) {
-			throw runtime_error("Invalid depth argument: " + to_string(depth));
-		}
 
-		if (depth == 0) {  // print the data for the current node
-			cout << root->getKey() << ", ";
-		}
-		else {  // traverse the left and right subtrees
-			cout << root->getKey() << ", ";
-			printAtDepth(root->getLeft(), depth - 1);
-			printAtDepth(root->getRight(), depth - 1);
-		}
+	// Exception for range of depth
+	if (depth < 0 || depth > treeDepth) {
+		throw runtime_error("Invalid depth argument: " + to_string(depth));
 	}
-	catch (exception& e) {
-		cout << "Error: " << e.what() << endl;
-	}
+
+	// Print the data for the current node
+	cout << root->getKey() << ", ";
+
+	// Traverse the left and right subtrees
+	printAtDepth(root->getLeft(), depth - 1);
+	printAtDepth(root->getRight(), depth - 1);
 }
