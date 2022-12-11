@@ -275,7 +275,7 @@ void BinaryTree<K, E>::printPostOrder(TNode<K, E>* node)
 	}
 }
 
-//Finding the depth of tree
+//Getting the depth of  tthe tree
 template <typename K, typename E>
 int BinaryTree<K, E>::getDepth(TNode<K, E>* node, K key)
 {
@@ -299,6 +299,7 @@ int BinaryTree<K, E>::getDepth(TNode<K, E>* node, K key)
 	}
 }
 
+//Getting the height of the tree
 template <typename K, typename E>
 int BinaryTree<K, E>::getHeight(TNode<K, E>* node)
 {
@@ -331,6 +332,7 @@ int BinaryTree<K, E>::getHeight(TNode<K, E>* node)
 	return std::max(left_height, right_height) + 1;
 }
 
+//Creating a subtree
 template <class K, class E>
 TNode<K, E>* BinaryTree<K, E>::subtree(TNode<K, E>* node, K key) {
 	//Check if tree is empty
@@ -356,6 +358,7 @@ TNode<K, E>* BinaryTree<K, E>::subtree(TNode<K, E>* node, K key) {
 	return NULL;
 }
 
+//To balance the tree
 template <typename K, typename E>
 void balanceTree(BinaryTree<K, E>& tree)
 {
@@ -392,6 +395,7 @@ void balanceTree(BinaryTree<K, E>& tree)
 	delete[] arr;
 }
 
+//Check if the tree is balanced
 template <typename K, typename E>
 bool BinaryTree<K, E>::isBalanced()
 {
@@ -414,6 +418,7 @@ bool BinaryTree<K, E>::isBalanced()
 	}
 }
 
+//Deleting Node || Children (Half Working)
 template <class K, class E>
 void BinaryTree<K, E>::deleteNodeChildren(TNode<K, E>* root, K key) {
 	// If the tree is empty, return immediately
@@ -431,6 +436,7 @@ void BinaryTree<K, E>::deleteNodeChildren(TNode<K, E>* root, K key) {
 	deleteNodeChildren(root->getRight(), key);
 }
 
+//Calculating the depth of the tree
 template <class K, class E>
 int calculateTreeDepth(TNode<K, E>* root) {
 	// Check if the tree is empty
@@ -448,7 +454,7 @@ int calculateTreeDepth(TNode<K, E>* root) {
 	return max(leftDepth, rightDepth) + 1;
 }
 
-//There is problem for this code
+//Print at Depth (Not fully working)
 template <class K, class E>
 void printAtDepth(TNode<K, E>* root, int depth) {
 	// Check if the tree is empty
@@ -475,6 +481,7 @@ void printAtDepth(TNode<K, E>* root, int depth) {
 	}
 }
 
+//Print the full tree
 template <class K, class E>
 void printBinaryTree(TNode<K, E>* root) {
 	// Check if the tree is empty
