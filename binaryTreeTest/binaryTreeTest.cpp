@@ -341,7 +341,7 @@ namespace binaryTreeTest
 			Assert::AreEqual(6, height);
 		}
 
-		TEST_METHOD(TestSubtree) 
+		TEST_METHOD(TestSubtree)
 		{
 			BinaryTree<int, int> tree;
 
@@ -358,12 +358,13 @@ namespace binaryTreeTest
 			TNode<int, int>* node = tree.subtree(tree.root, 5);
 
 			// Check that the returned node is not NULL
-			Assert::IsNull(node);
+			Assert::IsNotNull(node);
 
 			// Check that the returned node has the expected key and value
 			Assert::AreEqual(node->getKey(), 5);
 			Assert::AreEqual(node->getItem(), 5);
 		}
+
 
 		/*
 			Test the isBalance function to find if tree is balanced
