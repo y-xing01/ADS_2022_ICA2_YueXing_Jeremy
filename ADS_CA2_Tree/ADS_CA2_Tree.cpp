@@ -17,6 +17,7 @@ void demoCSVToObject();
 void demoPrintInOrder();
 void demoPrintAtDepth();
 void demoSubtree();
+void demoDepthHeight();
 
 int main()
 {
@@ -40,6 +41,9 @@ int main()
 
 	cout << endl << "demoSubtree()..........." << endl;
 	demoSubtree();
+
+	cout << endl << "demoDepthHeight()..........." << endl;
+	demoDepthHeight();
 
 	return 0;
 }
@@ -90,26 +94,6 @@ void demoPrintAtDepth() {
 	cout << endl;
 }
 
-void demoSimpleHash() {
-	//hasher for strings
-	hash<string> hasherStr;
-	string email = "john.smith@hotmail.com";
-	cout << "hash[" << email << "]: " << hasherStr(email) << endl;
-
-	//hasher for doubles
-	hash<double> hasherDbl;
-	double price = 123123.322;
-	cout << "hash[" << price << "]: " << hasherDbl(price) << endl;
-
-	//we can re-use a hasher
-	double weight = 12345.9897;
-	cout << "hash[" << weight << "]: " << hasherDbl(weight) << endl;
-
-	//we can store the hash value using size_t (basically an unsigned int)
-	size_t myHash = hasherStr("this is a hash value store in a uint");
-	cout << myHash << endl;
-}
-
 /*
 	Test the subtree function to find the node
 	to test this we will use the following tree
@@ -130,15 +114,71 @@ void demoSubtree(){
 	root->getRight()->setRight(new TNode<int, int>(7, 7));
 	root->getRight()->getRight()->setRight(new TNode<int, int>(8, 8));
 
-	// Search for the node with key 2 and create a new tree containing that node as the root
-	TNode<int, int>* new_root = tree.subtree(root, 6);
+	TNode<int, int>* root2 = tree.subtree(root, 6);
 
 	// Check that the new tree has the expected structure
-	cout << "New tree root key: " << new_root->getKey() << endl;
-	cout << "Left subtree key: " << new_root->getLeft()->getKey() << endl;
-	cout << "Right subtree key: " << new_root->getRight()->getKey() << endl;
-	cout << "Right subtree of 6: " << new_root->getRight()->getRight()->getKey() << endl;
+	cout << "New tree root key: " << root2->getKey() << endl;
+	cout << "Left subtree key: " << root2->getLeft()->getKey() << endl;
+	cout << "Right subtree key: " << root2->getRight()->getKey() << endl;
+	cout << "Right subtree of 6: " << root2->getRight()->getRight()->getKey() << endl;
 }
+
+/*
+	Test the depth and height function
+	to test this we will use the following tree
+	   4
+	  / \
+	 2   6
+	/ \ / \
+   1  3 5  7  
+*/
+void demoDepthHeight() {
+	// Create a binary tree
+	BinaryTree<int, int> tree;
+
+	// Test findHeight method with empty tree
+	int height = tree.getHeight(tree.root);
+	int depth = tree.getDepth(tree.root, 1);
+	cout << "Height of Tree : " << height << endl;
+	cout << "Depth of Tree : " << depth << endl;
+
+	tree.add(4, 4);
+	tree.add(2, 2);
+	tree.add(6, 6);
+	tree.add(1, 1);
+	tree.add(3, 3);
+	tree.add(5, 5);
+	tree.add(7, 7);
+
+	cout << endl;
+	height = tree.getHeight(tree.root);
+    depth = tree.getDepth(tree.root, 1);
+	cout << "Height of Tree : " << height << endl;
+	cout << "Depth of Tree : " << depth << endl;
+	cout << endl;
+}
+
+
+void demoSimpleHash() {
+	//hasher for strings
+	hash<string> hasherStr;
+	string email = "john.smith@hotmail.com";
+	cout << "hash[" << email << "]: " << hasherStr(email) << endl;
+
+	//hasher for doubles
+	hash<double> hasherDbl;
+	double price = 123123.322;
+	cout << "hash[" << price << "]: " << hasherDbl(price) << endl;
+
+	//we can re-use a hasher
+	double weight = 12345.9897;
+	cout << "hash[" << weight << "]: " << hasherDbl(weight) << endl;
+
+	//we can store the hash value using size_t (basically an unsigned int)
+	size_t myHash = hasherStr("this is a hash value store in a uint");
+	cout << myHash << endl;
+}
+
 
 void demoDateHash() {
 	Date myDate(25, 12, 2022);

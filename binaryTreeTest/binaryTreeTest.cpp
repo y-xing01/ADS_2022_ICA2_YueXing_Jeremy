@@ -335,7 +335,6 @@ namespace binaryTreeTest
 			tree.add(6, 6);
 
 			int height = tree.getHeight(tree.root);
-
 			Assert::AreEqual(6, height);
 		}
 

@@ -299,7 +299,6 @@ int BinaryTree<K, E>::getDepth(TNode<K, E>* node, K key)
 	}
 }
 
-//Getting height for the tree
 template <typename K, typename E>
 int BinaryTree<K, E>::getHeight(TNode<K, E>* node)
 {
@@ -308,12 +307,25 @@ int BinaryTree<K, E>::getHeight(TNode<K, E>* node)
 		return 0;
 
 	// Calculate the height of the left and right subtrees of the current node
-	int left_height = getHeight(node->getLeft());
-	int right_height = getHeight(node->getRight());
+	int left_height = 0;
+	int right_height = 0;
 
-	// If either subtree height is negative, throw an exception
-	if (left_height < 0 || right_height < 0)
-		throw std::runtime_error("getHeight() called on invalid tree");
+	try
+	{
+		// If the left subtree is not NULL, calculate its height
+		if (node->getLeft() != NULL)
+			left_height = getHeight(node->getLeft());
+
+		// If the right subtree is not NULL, calculate its height
+		if (node->getRight() != NULL)
+			right_height = getHeight(node->getRight());
+	}
+	catch (const std::exception& e)
+	{
+		// Catch any exceptions thrown by the recursive calls to getHeight()
+		// and re-throw them with a more informative error message
+		throw std::runtime_error("getHeight() called on invalid tree: " + std::string(e.what()));
+	}
 
 	// Return the maximum of the two subtree heights, plus one for the current
 	return std::max(left_height, right_height) + 1;
