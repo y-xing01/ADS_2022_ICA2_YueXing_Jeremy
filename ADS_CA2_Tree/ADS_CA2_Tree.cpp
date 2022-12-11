@@ -14,6 +14,7 @@ void demoSimpleHash();
 void demoDateHash();
 void demoParseString();
 void demoCSVToObject();
+void demoPrintInOrder();
 void demoPrintAtDepth();
 void demoSubtree();
 
@@ -31,6 +32,9 @@ int main()
 	//cout << endl << "demoCSVToObject()..........." << endl;
 	//demoCSVToObject();
 
+	cout << endl << "demoPrintTree()..........." << endl;
+	demoPrintInOrder();
+
 	cout << endl << "demoPrintAtDepth()..........." << endl;
 	demoPrintAtDepth();
 
@@ -38,6 +42,24 @@ int main()
 	demoSubtree();
 
 	return 0;
+}
+
+void demoPrintInOrder() {
+	// Create an instance of the BinaryTree class
+	BinaryTree<int, int> tree;
+
+	// Add some data to the tree
+	tree.add(4, 4);
+	tree.add(2, 2);
+	tree.add(6, 6);
+	tree.add(1, 1);
+	tree.add(3, 3);
+	tree.add(5, 5);
+	tree.add(7, 7);
+
+	cout << "Print Tree In Order: " << endl;
+	printBinaryTree(tree.root);
+	cout << endl;
 }
 
 void demoPrintAtDepth() {
@@ -53,16 +75,16 @@ void demoPrintAtDepth() {
 	tree.add(5, 5);
 	tree.add(7, 7);
 
-
-	cout << "Printing Tree At Depth 1:" << endl;
+	
+	cout << "Printing Tree At Depth 1: " << endl;
 	printAtDepth(tree.root, 1);
 
 	cout << endl;
-	cout << "Printing Tree At Depth 2:" << endl;
+	cout << "Printing Tree At Depth 2: " << endl;
 	printAtDepth(tree.root, 2);
 
 	cout << endl;
-	cout << "Printing Tree At Depth 3:" << endl;
+	cout << "Printing Tree At Depth 3: " << endl;
 	printAtDepth(tree.root, 3);
 
 	cout << endl;

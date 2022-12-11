@@ -38,6 +38,7 @@ public:
 	TNode<K, E>* subtree(TNode<K, E>* node, K key);
 	void printAtDepth(TNode<K, E>* root, int depth);
 	void deleteNodeChildren(TNode<K, E>* root, K key);
+	void printBinaryTree(TNode<K, E>* root);
 };
 
 //Constructor
@@ -298,6 +299,7 @@ int BinaryTree<K, E>::getDepth(TNode<K, E>* node, K key)
 	}
 }
 
+//Getting height for the tree
 template <typename K, typename E>
 int BinaryTree<K, E>::getHeight(TNode<K, E>* node)
 {
@@ -434,6 +436,7 @@ int calculateTreeDepth(TNode<K, E>* root) {
 	return max(leftDepth, rightDepth) + 1;
 }
 
+//There is problem for this code
 template <class K, class E>
 void printAtDepth(TNode<K, E>* root, int depth) {
 	// Check if the tree is empty
@@ -458,4 +461,17 @@ void printAtDepth(TNode<K, E>* root, int depth) {
 	catch (exception& e) {
 		  cout << "Error: " << e.what() << endl;
 	}
+}
+
+template <class K, class E>
+void printBinaryTree(TNode<K, E>* root) {
+	// Check if the tree is empty
+	if (root == NULL) return;
+
+	// Print the data for the current node
+	cout << root->getKey() << ", ";
+
+	// Recursively traverse the left and right subtrees
+	printBinaryTree(root->getLeft());
+	printBinaryTree(root->getRight());
 }
