@@ -18,6 +18,7 @@ void demoPrintInOrder();
 void demoPrintAtDepth();
 void demoSubtree();
 void demoDepthHeight();
+void demoBalanceTree();
 
 int main()
 {
@@ -44,6 +45,9 @@ int main()
 
 	cout << endl << "demoDepthHeight()..........." << endl;
 	demoDepthHeight();
+
+	cout << endl << "demoBalance()..........." << endl;
+	demoBalanceTree();
 
 	return 0;
 }
@@ -107,6 +111,7 @@ void demoPrintAtDepth() {
 */
 void demoSubtree(){
 	BinaryTree<int, int> tree;
+	//Setting the subtrees
 	TNode<int, int>* root = new TNode<int, int>(4, 4);
 	root->setLeft(new TNode<int, int>(2, 2));
 	root->setRight(new TNode<int, int>(6, 6));
@@ -116,7 +121,7 @@ void demoSubtree(){
 
 	TNode<int, int>* root2 = tree.subtree(root, 6);
 
-	// Check that the new tree has the expected structure
+	//Checking the subtree keys is correct
 	cout << "New tree root key: " << root2->getKey() << endl;
 	cout << "Left subtree key: " << root2->getLeft()->getKey() << endl;
 	cout << "Right subtree key: " << root2->getRight()->getKey() << endl;
@@ -136,7 +141,7 @@ void demoDepthHeight() {
 	// Create a binary tree
 	BinaryTree<int, int> tree;
 
-	// Test findHeight method with empty tree
+	// getDepth and getHeight from an empty tree
 	int height = tree.getHeight(tree.root);
 	int depth = tree.getDepth(tree.root, 1);
 	cout << "Height of Tree : " << height << endl;
@@ -150,6 +155,7 @@ void demoDepthHeight() {
 	tree.add(5, 5);
 	tree.add(7, 7);
 
+	// getDepth and getHeight from tree
 	cout << endl;
 	height = tree.getHeight(tree.root);
     depth = tree.getDepth(tree.root, 1);
@@ -158,6 +164,27 @@ void demoDepthHeight() {
 	cout << endl;
 }
 
+void demoBalanceTree() {
+	// Create an instance of the BinaryTree class
+	BinaryTree<int, int> tree;
+
+	tree.add(4, 4);
+	tree.add(2, 2);
+	tree.add(6, 6);
+	tree.add(1, 1);
+	tree.add(3, 3);
+	tree.add(5, 5);
+	tree.add(7, 7);
+
+	//Not Balanced
+	cout << "Print Tree In Order:" << endl;
+	printBinaryTree(tree.root);
+
+	//Balanced Tree
+	balanceTree(tree);
+	cout << "Print Balanced Tree:" << endl;
+	printBinaryTree(tree.root);
+}
 
 void demoSimpleHash() {
 	//hasher for strings

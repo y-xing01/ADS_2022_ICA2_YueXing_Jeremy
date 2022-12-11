@@ -275,7 +275,7 @@ void BinaryTree<K, E>::printPostOrder(TNode<K, E>* node)
 	}
 }
 
-//Getting the depth of  tthe tree
+//Getting the depth of the tree
 template <typename K, typename E>
 int BinaryTree<K, E>::getDepth(TNode<K, E>* node, K key)
 {
@@ -332,7 +332,7 @@ int BinaryTree<K, E>::getHeight(TNode<K, E>* node)
 	return std::max(left_height, right_height) + 1;
 }
 
-//Creating a subtree
+//Returning a new subtree
 template <class K, class E>
 TNode<K, E>* BinaryTree<K, E>::subtree(TNode<K, E>* node, K key) {
 	//Check if tree is empty

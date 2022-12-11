@@ -129,6 +129,7 @@ namespace binaryTreeTest
 		*/
 		TEST_METHOD(TestRemoveLeafNode)
 		{
+			//Creating Tree
 			BinaryTree<int, int> tree;
 			tree.add(4, 4);
 			tree.add(2, 2);
@@ -137,6 +138,8 @@ namespace binaryTreeTest
 			tree.add(3, 3);
 			tree.add(5, 5);
 			tree.add(7, 7);
+
+			//Removing Leaf
 			Assert::AreEqual(7, tree.count());
 			tree.remove(5);
 			Assert::AreEqual(6, tree.count());
@@ -164,6 +167,7 @@ namespace binaryTreeTest
 		*/
 		TEST_METHOD(TestRemoveNodeWithOneChild)
 		{
+			//Creating Tree
 			BinaryTree<int, int> tree;
 			tree.add(4, 4);
 			tree.add(2, 2);
@@ -197,6 +201,7 @@ namespace binaryTreeTest
 
 		TEST_METHOD(TestRemoveNodeWithTwoChildren)
 		{
+			//Creating Tree
 			BinaryTree<int, int> tree;
 			tree.add(4, 4);
 			tree.add(2, 2);
@@ -205,7 +210,11 @@ namespace binaryTreeTest
 			tree.add(3, 3);
 			tree.add(5, 5);
 			tree.add(7, 7);
+
+			//Counting Tree
 			Assert::AreEqual(7, tree.count());
+
+			//Removing key
 			tree.remove(2);
 			Assert::AreEqual(6, tree.count());
 			Assert::AreEqual(4, tree.root->getItem());
@@ -240,6 +249,7 @@ namespace binaryTreeTest
 
 		TEST_METHOD(TestRemoveNodeWithMultipleChildren)
 		{
+			//Creating Tree
 			BinaryTree<int, int> tree;
 			tree.add(8, 8);
 			tree.add(4, 4);
@@ -256,8 +266,10 @@ namespace binaryTreeTest
 			tree.add(11, 11);
 			tree.add(13, 13);
 			tree.add(15, 15);
+			//Counting Tree
 			Assert::AreEqual(15, tree.count());
 
+			//Checking and removing root
 			Assert::IsNotNull(tree.root->getRight()->getRight()->getLeft());
 			Assert::AreEqual(13, tree.root->getRight()->getRight()->getLeft()->getItem());
 			tree.remove(12);
@@ -277,6 +289,7 @@ namespace binaryTreeTest
 		*/
 		TEST_METHOD(TestSearchItem)
 		{
+			//Creating Tree
 			BinaryTree<int, int> tree;
 			tree.add(4, 4);
 			tree.add(2, 2);
@@ -286,6 +299,8 @@ namespace binaryTreeTest
 			tree.add(5, 5);
 			tree.add(7, 7);
 			tree.add(15, 15);
+			
+			//Searching if key is in tree
 			bool result = tree.search(7);
 			Assert::AreEqual(true, result);
 		}
@@ -301,10 +316,13 @@ namespace binaryTreeTest
 		*/
 		TEST_METHOD(TestFindDepth)
 		{
+			//Creating Tree
 			BinaryTree<int, int> tree;
 			tree.add(3, 3);
 			tree.add(2, 2);
 			tree.add(1, 1);
+
+			//Getting Depth
 			int depth = tree.getDepth(tree.root, 1);
 			Assert::AreEqual(2, depth);
 		}
@@ -326,6 +344,7 @@ namespace binaryTreeTest
 		*/
 		TEST_METHOD(TestGetHeight)
 		{
+			//Creating Tree
 			BinaryTree<int, int> tree;
 			tree.add(1, 1);
 			tree.add(2, 2);
@@ -334,8 +353,43 @@ namespace binaryTreeTest
 			tree.add(5, 5);
 			tree.add(6, 6);
 
+			//Getting Height
 			int height = tree.getHeight(tree.root);
+
 			Assert::AreEqual(6, height);
+		}
+
+		/*
+			Test the subtree function to find the node
+			to test this we will use the following tree
+			   4
+			  / \
+			 2   6
+		    / \ / \
+		   1  3 5  7
+		*/
+		TEST_METHOD(TestSubtree)
+		{
+			BinaryTree<int, int> tree;
+
+			// Insert some nodes into the tree
+			tree.add(4, 4);
+			tree.add(2, 2);
+			tree.add(6, 6);
+			tree.add(1, 1);
+			tree.add(3, 3);
+			tree.add(5, 5);
+			tree.add(7, 7);
+
+			// Search for the node with key 5
+			TNode<int, int>* node = tree.subtree(tree.root, 5);
+
+			// Check that the returned node is not NULL
+			Assert::IsNotNull(node);
+
+			// Check that the returned node has the expected key and value
+			Assert::AreEqual(node->getKey(), 5);
+			Assert::AreEqual(node->getItem(), 5);
 		}
 
 		/*
